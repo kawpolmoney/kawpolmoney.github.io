@@ -1,803 +1,765 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- 네이버 서치어드바이저 소유확인 태그 -->
   <meta name="naver-site-verification" content="66897d12656229c3a6ce153a29ec0e1cf1c5fad5" />
-<meta charset="utf-8"><link rel="icon" href="data:,">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>웹구현(WEBGUHYEON) — 병원·학원·소상공인 홈페이지 제작 · 업무 시스템 · 유지보수</title>
-<meta name="description" content="웹구현(WEBGUHYEON)은 병원·학원·소상공인·중소기업 홈페이지 제작과 업무 시스템(고객·예약·매출 관리), 유지보수를 합니다. 업종별 샘플을 보고 무료로 상담하세요.">
-<link rel="canonical" href="https://kawpolmoney.github.io/webguhyeon-site/">
-<meta property="og:type" content="website"><meta property="og:site_name" content="웹구현 WEBGUHYEON"><meta property="og:title" content="웹구현(WEBGUHYEON) — 병원·학원·소상공인 홈페이지 제작 · 업무 시스템 · 유지보수"><meta property="og:description" content="병원·학원·소상공인·중소기업 홈페이지 제작과 업무 시스템. 업종별 샘플을 보고 무료로 상담하세요."><meta property="og:url" content="https://kawpolmoney.github.io/webguhyeon-site/">
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"></noscript>
-<style>
-/* ===== 디자인 토큰 (설계서 ② · 색은 참고 이미지 측정 G안) ===== */
-:root{
-  /* 색: refokus.com 첫 화면(보라 3D·세로선) 실측 H안 - 화면 픽셀: 바탕 #15082C(72%), 선 사이 #110920, 표면 #1D0744, 어두운 보라 #380F69, 세로선 #700AA7 / CSS 변수: #7542FF #46289A #FFFFFF #DEE0E2 */
-  --deep:#110920; --bg:#15082C; --surf:#1D0744; --line:#380F69; --magenta:#700AA7;
-  --ink:#FFFFFF; --soft:#DEE0E2;
-  --accent:#7542FF; --accent-deep:#46289A; --accent-light:#B9A2FF;
-  --t-display:clamp(2.75rem,7vw,5.5rem); --t-h2:clamp(2rem,4.2vw,3rem); --t-h3:1.75rem;
-  --t-body:1.125rem; --t-small:.95rem; --t-cap:.8125rem;
-  --s1:8px; --s2:12px; --s3:16px; --s4:24px; --s5:32px; --s6:48px; --s7:72px; --s8:112px;
-  --r1:12px; --r2:20px; --r3:32px; --pill:999px;
-  --sh-sm:0 1px 2px rgba(0,0,0,.4); --sh-lg:0 18px 40px rgba(0,0,0,.5);
-  --d1:160ms; --d2:320ms; --d3:600ms; --ease:cubic-bezier(.2,.8,.2,1);
-  --max:1200px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;color-scheme:dark;scrollbar-color:var(--accent-deep) var(--deep)}
-::selection{background:var(--accent);color:var(--ink)}
-input,textarea{caret-color:var(--accent-light)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:var(--t-body);line-height:1.7;-webkit-font-smoothing:antialiased}
-img,svg,iframe{display:block;max-width:100%}
-a{color:inherit}
-.wrap{width:min(var(--max),100% - 2*var(--s4));margin-inline:auto}
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.skip{position:absolute;left:var(--s3);top:-60px;background:var(--accent);color:var(--ink);padding:var(--s2) var(--s3);border-radius:var(--r1);z-index:100}
-.skip:focus{top:var(--s3)}
-:focus-visible{outline:3px solid var(--accent-light);outline-offset:3px}
-.dark :focus-visible{outline-color:var(--accent-light)}
-h1,h2,h3{margin:0;line-height:1.1;font-weight:800;letter-spacing:-.02em}
-h2{font-size:var(--t-h2)} h3{font-size:var(--t-h3)}
-p{margin:0}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s1);min-height:48px;padding:0 var(--s5);border-radius:var(--pill);font:inherit;font-weight:800;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform var(--d2) var(--ease),box-shadow var(--d2) var(--ease),background var(--d1)}
-.btn--fill{background:var(--accent);color:var(--ink)}
-.btn--fill:hover{transform:translateY(-2px);box-shadow:var(--sh-lg)}
-.btn--line{background:transparent;color:var(--ink);border-color:var(--ink)}
-.btn--line:hover{background:var(--ink);color:var(--bg)}
-.dark .btn--line{color:var(--ink);border-color:var(--ink)}
-.dark .btn--line:hover{background:var(--bg);color:var(--ink)}
-.btn--ghost{background:transparent;color:var(--soft);border-color:var(--accent-deep);font-weight:700}
-.btn[aria-disabled="true"]{cursor:help}
 
-/* ===== 메뉴 ===== */
-.nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);min-height:72px}
-.logo{display:flex;align-items:center;gap:var(--s2);font-weight:800;letter-spacing:.02em;text-decoration:none}
-.logo i{display:grid;place-items:center;width:32px;height:32px;border-radius:var(--r1);background:var(--accent);color:var(--ink);font-style:normal;font-size:1rem}
-.menu{display:flex;align-items:center;gap:var(--s5);list-style:none;margin:0;padding:0}
-.menu a{text-decoration:none;font-size:var(--t-small);font-weight:600;color:var(--soft);transition:color var(--d1)}
-.menu a:hover{color:var(--ink)}
-.nav-cta{display:flex;align-items:center;gap:var(--s2)}
-.nav-cta .btn{white-space:nowrap}
-@media (max-width:860px){.nav .wrap{gap:var(--s2)}.nav-cta .btn--fill{padding:0 var(--s4);min-height:44px}.logo{font-size:var(--t-small)}}
-.kakao-note{position:absolute;right:0;top:calc(100% + var(--s2));background:var(--accent-deep);color:var(--ink);border:1px solid var(--accent);padding:var(--s3) var(--s4);border-radius:var(--r2);font-size:var(--t-small);line-height:1.6;width:min(320px,86vw);box-shadow:var(--sh-lg);display:none}
-.kakao-note.on{display:block}
-.kwrap{position:relative}
-@media (max-width:480px){.nav .wrap{gap:6px}.nav-cta{gap:6px}.nav-cta .btn--fill{padding:0 12px}.burger{padding:0 10px}.logo{gap:6px;font-size:.8rem}}
-.burger{display:none;white-space:nowrap;padding:0 14px;min-height:44px;min-width:44px;border:2px solid var(--ink);background:transparent;border-radius:var(--r1);font:inherit;font-weight:700;cursor:pointer}
-@media (max-width:860px){
-  .menu{display:none;position:absolute;left:0;right:0;top:72px;flex-direction:column;align-items:flex-start;gap:0;background:var(--bg);border-bottom:1px solid var(--accent-deep);padding:var(--s3) var(--s4)}
-  .menu.on{display:flex}
-  .menu li{width:100%} .menu a{display:block;padding:var(--s3) 0;font-size:var(--t-body)}
-  .burger{display:inline-flex;align-items:center;justify-content:center}
-  .nav-cta .btn--ghost{display:none}
-}
+  <!-- 검색엔진 최적화 (SEO) -->
+  <title>병원·학원 홈페이지 제작 전문 | 웹구현 (실제 구동 샘플 제공)</title>
+  <meta name="description" content="피부과·병원, 학원, 산후조리원 맞춤형 반응형 홈페이지 및 업무 시스템 제작. 실제 작동 시안 체험 가능, 제작 후 3개월 무상 케어 및 100% 소유권 이전.">
+  <meta name="keywords" content="병원 홈페이지 제작, 피부과 홈페이지 제작, 학원 홈페이지 제작, 산후조리원 홈페이지, 기업 홈페이지 제작, 웹구현, 반응형 웹사이트">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="웹구현 WEBGUHYEON">
+  <link rel="canonical" href="https://kawpolmoney.github.io/">
 
-/* ===== 1 첫 화면 ===== */
-.hero{padding:var(--s7) 0 var(--s7);overflow:hidden;background:radial-gradient(70% 60% at 78% 8%,rgba(117,66,255,.30),transparent 62%),radial-gradient(40% 40% at 8% 90%,rgba(112,10,167,.38),transparent 70%)}
-.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:var(--s6);align-items:center}
-.hero h1{font-size:var(--t-display);margin-bottom:var(--s4)}
-.hero h1 em{font-style:normal;color:var(--accent-light)}
-.hero .lead{font-size:1.25rem;color:var(--soft);max-width:34ch;margin-bottom:var(--s5)}
-.hero .cta{display:flex;flex-wrap:wrap;gap:var(--s3);margin-bottom:var(--s6)}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4);list-style:none;margin:0;padding:var(--s4) 0 0;border-top:2px solid var(--ink)}
-.steps li{font-size:var(--t-small);color:var(--soft);line-height:1.5}
-.steps b{display:block;color:var(--ink);font-size:1.05rem;margin:var(--s1) 0}
-.steps svg{width:28px;height:28px;color:var(--accent-light)}
-.stage{position:relative;min-height:440px}
-.mock{position:relative;background:var(--deep);border:1px solid var(--line);border-radius:var(--r2);padding:10px;box-shadow:var(--sh-lg)}
-.mock .bar{display:flex;gap:6px;padding:2px 4px 8px}
-.mock .bar i{width:9px;height:9px;border-radius:50%;background:var(--accent-deep)}
-.mock .view{position:relative;overflow:hidden;border-radius:var(--r1);background:var(--surf);aspect-ratio:16/10}
-.mock iframe{position:absolute;left:0;top:0;width:1280px;max-width:none;height:800px;border:0;transform-origin:0 0;pointer-events:none}
-.mock.phone{border-radius:var(--r3);padding:8px;width:34%;position:absolute;right:-2%;bottom:-6%}
-.mock.phone .view{aspect-ratio:9/19;border-radius:var(--r2)}
-.mock.phone iframe{width:390px;height:823px}
-@media (max-width:980px){.hero .wrap{grid-template-columns:1fr}.stage{min-height:0;margin-bottom:var(--s6)}.mock.phone{right:2%;bottom:-8%}}
-@media (max-width:560px){.steps{grid-template-columns:1fr}}
+  <!-- SNS / 카카오톡 공유 카드 (Open Graph) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="웹구현 WEBGUHYEON">
+  <meta property="og:title" content="병원·학원 홈페이지 제작 전문 | 웹구현">
+  <meta property="og:description" content="예약부터 매출 기록까지 실제로 도는 맞춤형 홈페이지. 실제 작동 샘플을 지금 직접 만져보세요.">
+  <meta property="og:url" content="https://kawpolmoney.github.io/">
+  <meta property="og:image" content="https://kawpolmoney.github.io/draft-main/photos/designer-phone.jpg">
 
+  <!-- 구글 구조화 데이터 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "웹구현 WEBGUHYEON",
+    "url": "https://kawpolmoney.github.io/",
+    "telephone": "010-8940-5067",
+    "description": "병원, 학원, 산후조리원, 중소기업 맞춤형 반응형 웹사이트 및 예약 관리 시스템 제작",
+    "areaServed": "KR"
+  }
+  </script>
 
-/* 첫 화면 콜라주(업종 중립, 토큰만 사용) */
-.stage{position:relative;min-height:460px}
-.col{position:absolute;background:var(--surf);border-radius:var(--r2);padding:var(--s4);box-shadow:var(--sh-lg);transition:transform var(--d2) var(--ease)}
-.col:hover{transform:translateY(-6px)}
-.col small{display:block;font-size:var(--t-cap);font-weight:700;color:var(--soft);margin-bottom:var(--s2)}
-.col small i{font-style:normal;font-weight:500}
-.col-a{left:0;top:0;width:52%;background:var(--deep);color:var(--ink)}
-.col-a small{color:var(--soft)}
-.col-a b{display:block;font-size:3.25rem;line-height:1;color:var(--accent-light);font-weight:800}
-.bars{display:flex;align-items:flex-end;gap:8px;height:90px;margin-top:var(--s3)}
-.bars s{flex:1;background:var(--accent);border-radius:6px 6px 0 0;display:block}
-.col-b{right:0;top:6%;width:44%}
-.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
-.cal s{display:block;aspect-ratio:1;border-radius:6px;background:var(--line)}
-.cal s.o{background:var(--accent)}
-.col-c{left:8%;bottom:4%;display:flex;gap:var(--s2);flex-wrap:wrap;width:50%;background:var(--accent-deep);padding:var(--s3)}
-.col-c span{background:var(--surf);color:var(--ink);border-radius:var(--pill);padding:6px 14px;font-size:var(--t-small);font-weight:700}
-.col-d{right:2%;bottom:0;width:46%}
-.col-d u{display:block;height:12px;border-radius:6px;background:var(--line);margin-bottom:10px;text-decoration:none}
-.col-d em{display:inline-block;margin-top:6px;font-style:normal;font-weight:800;font-size:var(--t-small);background:var(--accent);color:var(--ink);padding:8px 18px;border-radius:var(--pill)}
-.stage-cap{position:absolute;left:0;right:0;bottom:-34px;text-align:center;font-size:var(--t-cap);color:var(--soft)}
-@media (max-width:980px){.stage{min-height:420px;margin-bottom:var(--s7)}}
-@media (max-width:520px){.stage{min-height:480px}.col-a{width:62%}.col-b{width:50%;top:12%}.col-c{width:70%;left:0;bottom:8%}.col-d{width:56%}}
+  <style>
+    :root {
+      --primary: #0066ff;
+      --primary-hover: #0052cc;
+      --primary-light: #f0f7ff;
+      --dark: #0f172a;
+      --slate: #334155;
+      --gray: #64748b;
+      --border: #e2e8f0;
+      --bg-subtle: #f8fafc;
+      --white: #ffffff;
+    }
 
-/* ===== 진행·관리·비용·FAQ·지원금 확인표 (실제 내용 구역) ===== */
-.flow4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);list-style:none;margin:0;padding:0;counter-reset:s}
-.flow4 li{counter-increment:s;position:relative;padding:var(--s4);border-radius:var(--r2);background:var(--surf);border:1px solid var(--line)}
-.flow4 li::before{content:counter(s);display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--accent);color:var(--ink);font-weight:800;margin-bottom:var(--s3)}
-.flow4 b{display:block;font-size:1.15rem;margin-bottom:6px}
-.flow4 span{font-size:var(--t-small);color:var(--soft);line-height:1.65}
-.dur{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s4)}
-.dur span{padding:8px 16px;border-radius:var(--pill);background:var(--accent-deep);font-weight:700;font-size:var(--t-small)}
-@media (max-width:980px){.flow4{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.flow4{grid-template-columns:1fr}}
-.care{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
-.care .cell ul{list-style:none;margin:var(--s3) 0 0;padding:0;display:grid;gap:var(--s2);font-size:var(--t-small)}
-.care .cell li{display:flex;gap:var(--s2);align-items:flex-start}
-.care .cell li svg{width:18px;height:18px;margin-top:3px;flex:none;color:var(--accent-light)}
-.care .cell h3{font-size:1.35rem}
-.care .cell .tag{margin-bottom:var(--s3)}
-@media (max-width:760px){.care{grid-template-columns:1fr}}
-.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);list-style:none;margin:var(--s5) 0 0;padding:0}
-.steps4 li{border-top:2px solid var(--accent);padding-top:var(--s3);font-size:var(--t-small);color:var(--soft)}
-.steps4 b{display:block;color:var(--ink);margin-bottom:4px}
-@media (max-width:760px){.steps4{grid-template-columns:1fr 1fr}}
-.cost3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s5);list-style:none;margin:0;padding:var(--s5) 0 0;border-top:1px solid var(--line)}
-.cost3 b{display:block;font-size:1.05rem;margin-bottom:4px}
-.cost3 em{font-style:normal;display:block;font-size:2rem;font-weight:800;color:var(--accent-light);line-height:1.1;margin-bottom:6px}
-.cost3 span{font-size:var(--t-small);color:var(--soft);line-height:1.65}
-@media (max-width:760px){.cost3{grid-template-columns:1fr}}
-.faq details{border-top:1px solid var(--line);padding:var(--s4) 0}
-.faq details:last-child{border-bottom:1px solid var(--line)}
-.faq summary{cursor:pointer;font-weight:800;font-size:1.15rem;list-style:none;display:flex;justify-content:space-between;gap:var(--s3);min-height:44px;align-items:center}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-size:1.5rem;color:var(--accent-light);flex:none}
-.faq details[open] summary::after{content:"\2212"}
-.faq p{margin-top:var(--s2);color:var(--soft);font-size:var(--t-small);line-height:1.75;max-width:62ch}
-.tbl{width:100%;border-collapse:collapse;margin-top:var(--s6);font-size:var(--t-small)}
-.tbl caption{text-align:left;font-weight:800;font-size:1.15rem;padding-bottom:var(--s3);color:var(--ink)}
-.tbl th,.tbl td{text-align:left;padding:var(--s3) var(--s3);border-top:1px solid var(--line);vertical-align:top}
-.tbl th{font-weight:700;color:var(--soft)}
-.st{display:inline-block;padding:4px 12px;border-radius:var(--pill);font-weight:800;font-size:var(--t-cap);white-space:nowrap}
-.st.ok{background:var(--accent-light);color:var(--deep)}
-.st.no{background:var(--line);color:var(--ink)}
-.st.chk{border:1.5px solid var(--accent-light);color:var(--accent-light)}
-@media (max-width:760px){.tbl thead{display:none}.tbl tr{display:block;border-top:1px solid var(--line);padding:var(--s3) 0}.tbl td,.tbl th{display:block;border:0;padding:4px 0}}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--slate);
+      background-color: var(--white);
+      line-height: 1.6;
+      word-break: keep-all;
+      -webkit-font-smoothing: antialiased;
+    }
 
-/* ===== 키워드 마퀴(국내 제작업체 DFY 방식: 큰 글자가 흐르는 띠) / 사례 설명 / 진행선 ===== */
-.marq{overflow:hidden;background:var(--deep);border-block:1px solid var(--line);padding:var(--s4) 0}
-.marq .track{display:flex;gap:var(--s6);width:max-content;animation:marq 32s linear infinite}
-.marq span{font-size:clamp(2rem,5vw,3.75rem);font-weight:800;white-space:nowrap;letter-spacing:-.02em;color:var(--ink);display:inline-flex;align-items:center;gap:var(--s6)}
-.marq span::after{content:"";width:14px;height:14px;border-radius:50%;background:var(--accent);flex:none}
-.marq span:nth-child(even){color:var(--accent-light)}
-@keyframes marq{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.marq .track{animation:none}}
-.case{margin-top:var(--s2);display:flex;flex-wrap:wrap;gap:6px}
-.case span{font-size:var(--t-cap);padding:4px 12px;border-radius:var(--pill);border:1px solid var(--line);color:var(--soft)}
-.pline{display:block;width:100%;height:8px;margin-bottom:var(--s4)}
-.pline line{stroke:var(--accent);stroke-width:2;vector-effect:non-scaling-stroke}
+    a { text-decoration: none; color: inherit; }
+    button, select, input, textarea { font-family: inherit; }
 
-/* ===== 숫자 띠 (검은 면 + 나무선) ===== */
-.band{background:var(--deep);color:var(--ink);border-top:6px solid var(--accent);padding:var(--s6) 0}
-.band .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s5)}
-.band b{display:block;font-size:clamp(2.25rem,5vw,3.5rem);line-height:1;color:var(--accent-light);font-weight:800}
-.band span{display:block;margin-top:var(--s2);font-size:var(--t-small);color:var(--soft)}
-@media (max-width:640px){.band .wrap{grid-template-columns:1fr}}
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+    }
+    .nav-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--primary); }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 22px;
+    }
+    nav a {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--slate);
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--primary); }
+    .header-cta {
+      background: var(--primary);
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .header-cta:hover { background: var(--primary-hover); }
 
-/* ===== 공통 구역 ===== */
-section.sec{padding:var(--s8) 0}
-.sec-head{max-width:46rem;margin-bottom:var(--s6)}
-.sec-head p.sub{margin-top:var(--s3);color:var(--soft);font-size:1.15rem}
-.dark{background:var(--deep);color:var(--ink)}
-.dark .sec-head p.sub{color:var(--soft)}
+    section { padding: 80px 20px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 44px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .section-desc {
+      font-size: clamp(15px, 2vw, 17px);
+      color: var(--gray);
+      max-width: 640px;
+      margin: 0 auto;
+    }
 
-/* ===== 2 샘플 ===== */
-.works{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s5)}
-.work{display:block;text-decoration:none}
-.work .mock{transition:transform var(--d3) var(--ease),box-shadow var(--d3) var(--ease)}
-.work:hover .mock{transform:translateY(-6px)}
-.work .cap{display:flex;justify-content:space-between;align-items:baseline;margin-top:var(--s4);gap:var(--s3)}
-.work .cap b{font-size:var(--t-h3);letter-spacing:-.02em}
-.work .cap span{font-size:var(--t-small);color:var(--soft)}
-.work .go{display:inline-block;margin-top:var(--s2);font-weight:800;color:var(--accent-light)}
-@media (max-width:860px){.works{grid-template-columns:1fr}}
-/* 사례 정사각 격자(국내 제작업체 studio-jt 방식: 사례를 정사각 칸으로 나열) */
-.works .mock .view{aspect-ratio:1/1}
-.works .mock iframe{height:1280px}
-.work.soon{display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:1/1;align-self:start;padding:var(--s5);border:2px dashed var(--accent-deep);border-radius:var(--r2);background:var(--deep)}
-.work.soon b{display:block;font-size:var(--t-h3);letter-spacing:-.02em;margin-bottom:var(--s2)}
-.work.soon p{font-size:var(--t-small);color:var(--soft);line-height:1.65}
-.work.soon .tag{align-self:flex-start;margin:0;color:var(--accent-light)}
-.work.soon svg{width:44px;height:44px;color:var(--accent-light)}
-@media (max-width:860px){.work.soon{aspect-ratio:auto;min-height:220px;gap:var(--s4)}}
+    .hero { text-align: center; padding: 90px 20px 70px; }
+    .hero h1 {
+      font-size: clamp(32px, 5.5vw, 50px);
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+      margin-bottom: 22px;
+    }
+    .hero h1 span { color: var(--primary); }
+    .hero p {
+      font-size: clamp(16px, 2.5vw, 19px);
+      color: var(--slate);
+      max-width: 680px;
+      margin: 0 auto 36px;
+    }
+    .hero-btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(0, 102, 255, 0.28);
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    .btn-subtle {
+      background: var(--bg-subtle);
+      color: var(--dark);
+      border: 1px solid var(--border);
+      padding: 16px 28px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+    }
 
-/* ===== 후기·소식 구역(국내 제작업체 webmind 구성: 제작 후기·수주 소식) ===== */
-.voice{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
-.voice .cell ul{list-style:none;margin:var(--s3) 0 0;padding:0;display:grid;gap:var(--s2);font-size:var(--t-small);color:var(--soft)}
-.voice .cell li{padding-left:var(--s4);position:relative;line-height:1.6}
-.voice .cell li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.voice .empty{border-style:dashed}
-@media (max-width:760px){.voice{grid-template-columns:1fr}}
+    .trust-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: left;
+    }
+    .trust-item { display: flex; gap: 14px; align-items: flex-start; }
+    .trust-item strong { display: block; font-size: 16px; color: var(--dark); margin-bottom: 2px; }
+    .trust-item span { font-size: 13px; color: var(--gray); }
 
-/* ===== 3 · 4 bento ===== */
-.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--s3)}
-.cell{background:var(--surf);border:1px solid var(--line);border-radius:var(--r2);padding:var(--s5);transition:transform var(--d2) var(--ease),box-shadow var(--d2) var(--ease)}
-.cell:hover{transform:translateY(-4px);border-color:var(--accent)}
-.cell svg{width:34px;height:34px;color:var(--accent-light);margin-bottom:var(--s4)}
-.cell h3{font-size:1.4rem;margin-bottom:var(--s2)}
-.cell p{font-size:var(--t-small);color:var(--soft);line-height:1.65}
-.cell .arrow{display:block;margin-top:var(--s3);font-weight:800;color:var(--accent-light);font-size:var(--t-small)}
-.c-a{grid-column:span 3}.c-b{grid-column:span 3}.c-c,.c-d,.c-e{grid-column:span 2}
-.c-ink{background:var(--deep);color:var(--ink);border-color:var(--line)}
-.c-ink p{color:var(--soft)}.c-ink svg{color:var(--accent-light)}.c-ink .arrow{color:var(--accent-light)}
-.c-wood{background:var(--accent-deep);color:var(--ink);border-color:var(--accent)}
-.c-wood p{color:var(--ink)}.c-wood svg{color:var(--ink)}
-.plan{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3)}
-.plan .cell{grid-column:auto}
-.plan ul{list-style:none;margin:var(--s4) 0 0;padding:0;display:grid;gap:var(--s2);font-size:var(--t-small)}
-.plan li{display:flex;gap:var(--s2);align-items:flex-start}
-.plan li svg{width:18px;height:18px;margin:3px 0 0;flex:none}
-.tag{display:inline-block;font-size:var(--t-cap);font-weight:800;letter-spacing:.1em;padding:4px 12px;border-radius:var(--pill);border:1.5px solid currentColor;margin-bottom:var(--s3)}
-.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s5);margin-top:var(--s6);padding-top:var(--s5);border-top:1px solid var(--line)}
-.perks .cell{background:none;border:0;border-radius:0;padding:0}
-.perks .cell:hover{transform:none;border-color:transparent}
-.perks .cell h3{font-size:1.15rem}
-.price-note{margin-top:var(--s4);font-size:var(--t-small);color:var(--soft)}
-@media (max-width:860px){.bento{grid-template-columns:1fr 1fr}.c-a,.c-b{grid-column:span 2}.c-c,.c-d,.c-e{grid-column:span 1}.plan,.perks{grid-template-columns:1fr}}
-@media (max-width:520px){.bento{grid-template-columns:1fr}.c-a,.c-b,.c-c,.c-d,.c-e{grid-column:span 1}}
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .sample-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .sample-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+      border-color: var(--primary);
+    }
+    .sample-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .tag-clinic { background: #eaf2ff; color: #0066ff; }
+    .tag-academy { background: #e8f5e9; color: #2e7d32; }
+    .tag-care { background: #fbe9e7; color: #d84315; }
+    .tag-company { background: #eceff1; color: #455a64; }
+    .sample-card h3 { font-size: 20px; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
+    .sample-card p { font-size: 13px; color: var(--gray); line-height: 1.5; margin-bottom: 20px; }
+    .sample-link {
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-/* ===== 5 구현 범위 (어두운 구역) ===== */
-.chips{display:flex;flex-wrap:wrap;gap:var(--s2);margin-bottom:var(--s6)}
-.chips span{padding:8px 16px;border:1.5px solid var(--accent-deep);border-radius:var(--pill);font-size:var(--t-small);font-weight:600}
-.chips span.soon{border-style:dashed;opacity:.8}
-.demos{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4)}
-.demo{background:var(--deep);border:1.5px solid var(--accent-deep);border-radius:var(--r2);padding:var(--s5);min-height:320px;display:flex;flex-direction:column}
-.demo h3{font-size:1.25rem;margin-bottom:var(--s1)}
-.demo .note{font-size:var(--t-cap);color:var(--soft);margin-bottom:var(--s4)}
-.tabs{display:flex;gap:6px;margin-bottom:var(--s3);flex-wrap:wrap}
-.tabs button{min-height:44px;padding:0 var(--s3);border-radius:var(--pill);border:1.5px solid var(--accent-deep);background:transparent;color:var(--ink);font:inherit;font-size:var(--t-small);font-weight:700;cursor:pointer;transition:background var(--d1),color var(--d1)}
-.tabs button[aria-selected="true"]{background:var(--accent-light);color:var(--deep);border-color:var(--accent-light)}
-.panel{flex:1;border-radius:var(--r1);background:var(--surf);color:var(--ink);padding:var(--s4);font-size:var(--t-small);line-height:1.6;display:none}
-.panel.on{display:block}
-.panel b{display:block;font-size:1.05rem;margin-bottom:6px}
-.flow{display:grid;gap:var(--s2);list-style:none;margin:0;padding:0;counter-reset:f}
-.flow li{counter-increment:f;display:flex;align-items:center;gap:var(--s3);padding:10px 14px;border-radius:var(--r1);border:1.5px solid var(--accent-deep);font-size:var(--t-small);font-weight:600;transition:background var(--d2),color var(--d2),border-color var(--d2)}
-.flow li::before{content:counter(f);display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent-deep);color:var(--ink);font-weight:800;font-size:var(--t-cap);flex:none}
-.flow li.on{background:var(--accent-light);color:var(--deep);border-color:var(--accent-light)}
-.flow li.on::before{background:var(--deep);color:var(--accent-light)}
-.hov{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:1}
-.hov div{display:grid;place-items:center;text-align:center;border-radius:var(--r1);background:var(--surf);color:var(--ink);font-size:var(--t-cap);font-weight:700;padding:10px;transition:transform var(--d2) var(--ease),background var(--d2),color var(--d2)}
-.hov div:hover{transform:translateY(-6px) scale(1.04);background:var(--accent);color:var(--ink)}
-@media (max-width:980px){.demos{grid-template-columns:1fr}}
+    .interactive-scope { background: var(--bg-subtle); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .scope-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .scope-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .scope-box h3 { font-size: 17px; font-weight: 800; color: var(--dark); margin-bottom: 10px; }
+    .scope-box p { font-size: 14px; color: var(--gray); line-height: 1.6; margin-bottom: 16px; }
+    .scope-box .flow-step {
+      background: var(--bg-subtle);
+      border-left: 3px solid var(--primary);
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--dark);
+      border-radius: 0 6px 6px 0;
+    }
 
-/* ===== 6 지원금 ===== */
-.gov .bento{grid-template-columns:repeat(3,1fr)}
-.gov .cell{grid-column:auto}
-.way{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);list-style:none;margin:var(--s6) 0 0;padding:0}
-.way li{position:relative;padding-top:var(--s5);border-top:2px solid var(--ink);font-size:var(--t-small);color:var(--soft)}
-.way li b{display:block;color:var(--ink);margin-bottom:4px}
-.way li::before{content:"";position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--accent)}
-.fine{margin-top:var(--s5);font-size:var(--t-cap);color:var(--soft)}
-@media (max-width:860px){.gov .bento{grid-template-columns:1fr}.way{grid-template-columns:1fr 1fr}}
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .plan-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 34px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .plan-card.featured {
+      border: 2px solid var(--primary);
+      position: relative;
+      box-shadow: 0 8px 30px rgba(0, 102, 255, 0.08);
+    }
+    .featured-badge {
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+    }
+    .plan-lead { font-size: 14px; color: var(--gray); margin-bottom: 24px; min-height: 42px; }
+    .plan-meta { padding-bottom: 18px; margin-bottom: 22px; border-bottom: 1px solid var(--border); }
+    .plan-meta span { font-size: 12px; color: var(--gray); display: block; margin-bottom: 4px; }
+    .plan-meta strong { font-size: 19px; font-weight: 800; color: var(--dark); }
+    .plan-list { list-style: none; margin-bottom: 30px; font-size: 14px; line-height: 2.1; color: var(--slate); }
+    .plan-btn {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .plan-btn-default { background: var(--bg-subtle); border: 1px solid var(--border); color: var(--dark); }
+    .plan-btn-primary { background: var(--primary); color: #fff; }
 
-/* ===== 7 문의 ===== */
-.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:var(--s7);align-items:start}
-.ways{display:grid;gap:var(--s3);margin-top:var(--s5)}
-.ways .cell{padding:var(--s4)}
-form{display:grid;gap:var(--s3);background:var(--surf);padding:var(--s5);border-radius:var(--r2);border:1px solid var(--line)}
-label{font-size:var(--t-small);font-weight:700}
-input,textarea{width:100%;min-height:48px;padding:12px 16px;border-radius:var(--r1);border:1.5px solid var(--accent);background:var(--surf);font:inherit;color:var(--ink)}
-textarea{min-height:110px;resize:vertical}
-.err{color:var(--accent-light);font-size:var(--t-small);font-weight:700;min-height:1.2em}
-.consent{display:flex;gap:var(--s2);align-items:center;min-height:44px;font-weight:400;font-size:var(--t-cap);color:var(--soft);line-height:1.6}
-.consent input{width:22px;min-height:22px;margin-top:2px;flex:none}
-@media (max-width:900px){.contact{grid-template-columns:1fr}}
-footer{background:var(--deep);color:var(--ink);padding:var(--s6) 0;font-size:var(--t-small)}
-footer .wrap{display:flex;justify-content:space-between;gap:var(--s4);flex-wrap:wrap}
-footer a{color:var(--accent-light)}
-footer .biz{flex-basis:100%;opacity:.8;font-size:.85em;line-height:1.6}
+    .cost-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .cost-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      background: var(--white);
+    }
+    .cost-label { font-size: 13px; color: var(--gray); }
+    .cost-value { font-size: 22px; font-weight: 800; color: var(--dark); margin: 6px 0; }
+    .cost-value.free { color: var(--primary); }
+    .cost-sub { font-size: 12px; color: var(--gray); }
+    .care-note {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.6;
+    }
 
-/* ===== 시각 요소 확대 (대표 승인 2026-10-20: 딱딱함 해소, 토큰 색만 사용) ===== */
-.cell{background:linear-gradient(155deg,var(--surf) 0%,rgba(56,15,105,.55) 100%);position:relative;overflow:hidden}
-.cell::after{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(117,66,255,.35),transparent 70%);transition:transform var(--d3) var(--ease);pointer-events:none}
-.cell:hover::after{transform:scale(1.8)}
-.cell:hover{box-shadow:0 0 0 1px var(--accent),var(--sh-lg)}
-.cell svg{padding:8px;width:48px;height:48px;border-radius:var(--r1);background:rgba(117,66,255,.22)}
-.perks .cell::after,.plan li svg,.care .cell li svg{display:none}
-.plan li svg,.care .cell li svg{display:block;background:none;padding:0;width:18px;height:18px}
-.perks .cell{overflow:visible}
-.c-ink{background:linear-gradient(155deg,var(--deep),var(--accent-deep))}
-.c-wood{background:linear-gradient(135deg,var(--accent-deep),var(--accent))}
-.sec-head h2{position:relative;padding-bottom:var(--s3)}
-.sec-head h2::after{content:"";display:block;width:64px;height:5px;margin-top:var(--s3);border-radius:var(--pill);background:linear-gradient(90deg,var(--accent),var(--accent-light));transform-origin:left;transform:scaleX(var(--ul,1))}
-.blob{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;opacity:.55}
-.hero{position:relative}
-.hero .wrap{position:relative;z-index:1}
-.blob.b1{width:340px;height:340px;background:var(--accent);right:6%;top:-60px}
-.blob.b2{width:280px;height:280px;background:var(--magenta);left:-60px;bottom:-40px}
-.marq.rev .track{animation-direction:reverse;animation-duration:44s}
-.marq.rev span{color:transparent;-webkit-text-stroke:1.5px var(--accent-light)}
-.marq.rev span::after{background:var(--accent-light)}
-.work .mock{box-shadow:0 20px 50px rgba(117,66,255,.25)}
-.band b{background:linear-gradient(90deg,var(--accent-light),var(--ink));-webkit-background-clip:text;background-clip:text;color:transparent}
-@media (prefers-reduced-motion:reduce){.blob{display:none}.cell::after{transition:none}}
+    .gov-banner {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border-radius: 16px;
+      padding: 40px 32px;
+      color: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+    .gov-content { max-width: 640px; }
+    .gov-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .gov-title { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+    .gov-desc { font-size: 14px; color: #cbd5e1; line-height: 1.6; }
+    .gov-btn {
+      background: #38bdf8;
+      color: #0f172a;
+      padding: 14px 26px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
 
-/* 사진(Unsplash License) */
-.col-p{left:-3%;top:46%;width:150px;height:150px;padding:0;border-radius:50%;overflow:hidden;border:4px solid var(--accent);z-index:2}
-.col-p img{width:100%;height:100%;object-fit:cover;object-position:60% 30%}
-.work.soon.ph{position:relative;overflow:hidden;color:var(--ink);border-style:solid;border-color:var(--accent-deep);background-size:cover;background-position:center}
-.work.soon.ph::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,9,32,.25),rgba(17,9,32,.88))}
-.work.soon.ph>*{position:relative}
-.work.soon.ph1{background-image:url(photos/designer-phone.jpg)}
-.work.soon.ph2{background-image:url(photos/owner-cafe.jpg);background-position:center 30%}
-.work.soon.ph svg{display:none}
-.credit{font-size:var(--t-cap);color:var(--soft)}
-@media (max-width:520px){.col-p{width:96px;height:96px;top:50%;left:0}}
+    .contact-section { background: var(--bg-subtle); border-top: 1px solid var(--border); }
+    .contact-card {
+      max-width: 620px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 32px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    label { display: block; font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--primary); }
+    .submit-btn {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover { background: var(--primary-hover); }
+    .contact-direct {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 13px;
+      color: var(--gray);
+    }
+    .contact-direct a { color: var(--dark); font-weight: 700; text-decoration: underline; }
 
-/* ===== 고정 문의 버튼 (M5) ===== */
-.fab{position:fixed;right:var(--s4);bottom:var(--s4);z-index:40;box-shadow:var(--sh-lg);opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity var(--d2) var(--ease),transform var(--d2) var(--ease)}
-.fab.on{opacity:1;transform:none;pointer-events:auto}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cell:hover,.col:hover,.work:hover .mock,.hov div:hover,.btn--fill:hover{transform:none}.fab{transition:opacity var(--d1)}}
-</style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "웹구현 WEBGUHYEON", "alternateName": ["웹구현", "WEBGUHYEON"], "url": "https://kawpolmoney.github.io/webguhyeon-site/", "inLanguage": "ko", "description": "웹구현(WEBGUHYEON)은 병원·학원·소상공인·중소기업 홈페이지 제작과 업무 시스템(고객·예약·매출 관리), 유지보수를 합니다. 업종별 샘플을 보고 무료로 상담하세요."}</script>
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 50px 20px;
+      background: #fff;
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .gov-banner { text-align: center; justify-content: center; }
+      .contact-card { padding: 28px 20px; }
+    }
+  </style>
 </head>
-<body>
-<a class="skip" href="#main">본문으로 건너뛰기</a>
+<body id="top">
 
-<header class="nav">
-  <div class="wrap">
-    <a class="logo" href="#top" aria-label="WEBGUHYEON 홈"><i aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></i>WEBGUHYEON</a>
-    <nav aria-label="주 메뉴" style="display:contents"><ul class="menu" id="menu">
-      <li><a href="#works">샘플</a></li>
-      <li><a href="#service">서비스</a></li>
-      <li><a href="#process">진행·관리</a></li>
-      <li><a href="#scope">구현 범위</a></li>
-      <li><a href="#gov">지원금</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact">문의</a></li>
-    </ul></nav>
-    <div class="nav-cta">
-      <div class="kwrap">
-        <button class="btn btn--ghost" id="kakaoBtn" type="button" aria-disabled="true" aria-expanded="false" aria-controls="kakaoNote">카톡 문의 · 준비 중</button>
-        <div class="kakao-note" id="kakaoNote" role="status">카카오톡 채널을 준비하고 있어요. 지금은 이메일(kwak_jaewon@naver.com)이나 아래 상담 신청으로 문의해 주세요.</div>
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#top" class="logo">WEB<span>GUHYEON</span></a>
+      <nav>
+        <ul>
+          <li><a href="#works">업종별 샘플</a></li>
+          <li><a href="#scope">구현 범위</a></li>
+          <li><a href="#service">플랜 비교</a></li>
+          <li><a href="#cost">운영 실비</a></li>
+          <li><a href="#gov">정부지원금</a></li>
+        </ul>
+      </nav>
+      <a href="#contact" class="header-cta">무료 견적 문의</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- 01. Hero -->
+    <section class="hero container">
+      <div class="badge">⚡ 실제 작동하는 인터랙티브 시스템 시안 제공</div>
+      <h1>
+        예약부터 매출 기록까지 실제로 도는<br>
+        <span>우리 병원·학원·기업 맞춤형</span> 홈페이지
+      </h1>
+      <p>
+        보여주기식 껍데기만 만들지 않습니다. 상담 문의 접수, 일정 관리, 고객 데이터 자동 기록까지 실제 비즈니스가 멈춤 없이 돌아가는 시스템으로 구현해 드립니다.
+      </p>
+      <div class="hero-btn-group">
+        <a href="#works" class="btn-primary">실제 작동 샘플 만져보기 →</a>
+        <a href="#contact" class="btn-subtle">30초 간편 견적 신청</a>
       </div>
-      <a class="btn btn--fill" href="#contact">무료 상담</a>
-      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu">메뉴</button>
-    </div>
-  </div>
-</header>
 
-<main id="main">
-<!-- 1 첫 화면 -->
-<section class="hero" id="top" aria-labelledby="h1">
-  <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span>
-  <div class="wrap">
-    <div>
-      <h1 id="h1">홈페이지, <em>막막</em>하셨나요?</h1>
-      <p class="lead">받을 수 있는 지원금이 있는지 먼저 확인하고, 샘플부터 보세요.</p>
-      <div class="cta">
-        <a class="btn btn--fill" href="#works">샘플 보기 →</a>
-        <a class="btn btn--line" href="#contact">무료 상담</a>
-      </div>
-      <ol class="steps">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4"/></svg><b>업무 구조 설계</b>지금 어떤 업무가 어떻게 돌아가는지부터 파악합니다.</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg><b>디자인 · 개발</b>브랜드에 맞는 디자인과 실제 데이터로 도는 시스템을 만듭니다.</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg><b>배포 · 유지보수</b>배포하고, 이후 수정·오류 대응까지 책임집니다.</li>
-      </ol>
-    </div>
-    <div class="stage" role="img" aria-label="업무 시스템 화면 예시: 문의 통계, 예약 달력, 상태 알림, 문의 폼">
-      <div class="col col-a"><small>이번 달 문의 <i>(예시)</i></small><b>128</b><div class="bars" aria-hidden="true"><s style="height:34%"></s><s style="height:52%"></s><s style="height:44%"></s><s style="height:70%"></s><s style="height:62%"></s><s style="height:88%"></s></div></div>
-      <div class="col col-b"><small>예약 달력</small><div class="cal" aria-hidden="true"><s></s><s></s><s class="o"></s><s></s><s></s><s></s><s class="o"></s><s></s><s class="o"></s><s></s><s></s><s></s><s></s><s class="o"></s><s></s><s></s><s></s><s></s><s class="o"></s><s></s><s></s></div></div>
-      <div class="col col-c"><span>예약 확정</span><span>계약 완료</span><span>매출 기록</span></div>
-      <div class="col col-d"><small>문의 접수</small><u></u><u style="width:70%"></u><u style="width:48%"></u><em>상담 신청</em></div>
-      <div class="col col-p"><img src="draft-main/photos/designer-phone.jpg" alt="전화로 문의를 받으며 노트북으로 일하는 소상공인(예시 사진)" width="150" height="150"></div>
-      <p class="stage-cap">업무 시스템 화면 예시</p>
-    </div>
-  </div>
-</section>
-
-<!-- 숫자 띠 -->
-<div class="band" aria-label="제작 기간과 지원">
-  <div class="wrap">
-    <div><b data-count="3,7" data-suffix="일">3~7일</b><span>Basic(소개형) 제작 기간</span></div>
-    <div><b data-count="2,4" data-suffix="주">2~4주</b><span>Pro(업무 시스템) 제작 기간</span></div>
-    <div><b data-count="3" data-suffix="개월">3개월</b><span>제작 후 무상 지원(오타 수정·이미지 교체·오류 대응)</span></div>
-  </div>
-</div>
-
-<div class="marq" aria-label="핵심 키워드: 홈페이지, 업무 시스템, 유지보수, 지원금 확인, 소유권 이전">
-  <div class="track" aria-hidden="true"><span>홈페이지</span><span>업무 시스템</span><span>유지보수</span><span>지원금 확인</span><span>소유권 이전</span><span>홈페이지</span><span>업무 시스템</span><span>유지보수</span><span>지원금 확인</span><span>소유권 이전</span></div>
-</div>
-
-<div class="marq rev" aria-hidden="true">
-  <div class="track"><span>샘플 먼저</span><span>지원금 확인</span><span>3개월 무상</span><span>소유권 이전</span><span>호스팅 무료</span><span>샘플 먼저</span><span>지원금 확인</span><span>3개월 무상</span><span>소유권 이전</span><span>호스팅 무료</span></div>
-</div>
-
-<!-- 2 샘플 -->
-<section class="sec" id="works" aria-labelledby="h-works">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="h-works">샘플을 먼저 보세요.</h2>
-      <p class="sub">직접 눌러 보시면 어떤 홈페이지가 만들어지는지 바로 아십니다.</p>
-    </div>
-    <div class="works">
-      <a class="work" href="samples/hospital-v7/" target="_blank" rel="noopener" aria-label="병원(피부과) 홈페이지 제작 샘플 — 맑은결 피부과 열기(새 창)">
-        <div class="mock" data-view data-par><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="view"><iframe title="병원(피부과) 홈페이지 제작 샘플 — 맑은결 피부과" src="samples/hospital-v7/" loading="lazy" tabindex="-1"></iframe></div></div>
-        <div class="cap"><b>맑은결 피부과</b><span>Pro · Clinic (영업용 시안)</span></div>
-        <div class="case"><span>고민별 진료 안내</span><span>상담·예약 문의</span><span>비급여 비용 공개</span><span>의료광고 규정 반영</span></div>
-        <span class="go">직접 열어 보기 →</span>
-      </a>
-      <a class="work" href="samples/academy-v2/" target="_blank" rel="noopener" aria-label="학원 홈페이지 제작 샘플 — 새봄학원 열기(새 창)">
-        <div class="mock" data-view data-par><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="view"><iframe title="학원 홈페이지 제작 샘플 — 새봄학원" src="samples/academy-v2/" loading="lazy" tabindex="-1"></iframe></div></div>
-        <div class="cap"><b>새봄학원</b><span>Pro · Academy (영업용 시안)</span></div>
-        <div class="case"><span>레벨테스트 예약</span><span>시간표 안내</span><span>학부모 상담</span><span>주간 학습 알림</span></div>
-        <span class="go">직접 열어 보기 →</span>
-      </a>
-      <a class="work" href="samples/postpartum-v1/" target="_blank" rel="noopener" aria-label="산후조리원 홈페이지 제작 샘플 — 포근산후조리원 열기(새 창)">
-        <div class="mock" data-view data-par><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="view"><iframe title="산후조리원 홈페이지 제작 샘플 — 포근산후조리원" src="samples/postpartum-v1/" loading="lazy" tabindex="-1"></iframe></div></div>
-        <div class="cap"><b>포근산후조리원</b><span>Pro · Care (영업용 시안)</span></div>
-        <div class="case"><span>투어 예약</span><span>하루 일정 안내</span><span>식단·위생 안내</span><span>상담 문의</span></div>
-        <span class="go">직접 열어 보기 →</span>
-      </a>
-      <a class="work" href="samples/company-v1/" target="_blank" rel="noopener" aria-label="중소기업 홈페이지 제작 샘플 — 다온시스템 열기(새 창)">
-        <div class="mock" data-view data-par><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="view"><iframe title="중소기업 홈페이지 제작 샘플 — 다온시스템" src="samples/company-v1/" loading="lazy" tabindex="-1"></iframe></div></div>
-        <div class="cap"><b>다온시스템</b><span>Basic · Company (영업용 시안)</span></div>
-        <div class="case"><span>사업 분야</span><span>일하는 방식</span><span>견적 안내</span><span>상담 문의</span></div>
-        <span class="go">직접 열어 보기 →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- 3 고객 고민 -->
-<section class="sec" style="padding-top:0" aria-labelledby="h-fit">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="h-fit">이런 고민, 해결해 드립니다.</h2>
-    </div>
-    <div class="bento">
-      <article class="cell c-a c-ink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg><h3>상담 문의가 카톡에 흩어졌나요?</h3><p>문의가 여러 곳에 흩어져 놓치지 않도록, 한곳에서 관리합니다.</p></article>
-      <article class="cell c-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg><h3>예약 문의가 모이지 않나요?</h3><p>문의와 예약을 한 화면에 정리해 일정까지 이어지게 합니다.</p></article>
-      <article class="cell c-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg><h3>견적 문의를 놓치셨나요?</h3><p>접수부터 매출 기록까지 이어집니다.</p></article>
-      <article class="cell c-d c-wood"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.5 5.5L20 9.3l-4 4 1 5.7-5-3-5 3 1-5.7-4-4 5.5-.8z"/></svg><h3>홈페이지가 낡아 보이나요?</h3><p>요즘 트렌드를 반영한 모션과 구성으로 새로 만듭니다.</p></article>
-      <article class="cell c-e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M7 8c0-2 2-3 5-3s5 1 5 3-2 3-5 3-5 1-5 3 2 3 5 3 5-1 5-3"/></svg><h3>지원금을 받을 수 있을까요?</h3><p>3분 자가점검으로 먼저 확인해 드립니다.</p><a class="arrow" href="#gov">지원금 확인하기 →</a></article>
-    </div>
-  </div>
-</section>
-
-<!-- 4 서비스 -->
-<section class="sec" id="service" style="padding-top:0" aria-labelledby="h-service">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="h-service">만들고, 끝까지 책임집니다.</h2>
-      <p class="sub">목적에 맞는 맞춤형 반응형 웹사이트를 만들고, 만든 뒤에도 관리합니다.</p>
-    </div>
-    <div class="plan">
-      <article class="cell">
-        <span class="tag" style="color:var(--accent-light)">BASIC</span>
-        <h3>소개형 홈페이지</h3>
-        <p>존재를 알리고 연락받는 홈페이지. 소개·서비스·갤러리·오시는 길·문의로 구성합니다.</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>반응형(PC·모바일)</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>문의 폼 · 이메일 연결</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>도메인·호스팅·SSL·검색 등록 지원</li>
-        </ul>
-      </article>
-      <article class="cell c-ink">
-        <span class="tag" style="color:var(--accent-light)">PRO</span>
-        <h3>고객·매출까지 되는 업무 시스템</h3>
-        <p>공개 페이지에 로그인 후 관리 화면을 더합니다. 고객관리·예약·매출 관리까지 실제로 돌아가는 구조입니다. AI 상담 챗봇은 옵션(준비 중).</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>직원별 로그인·권한</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>상담 이력 → 계약 → 매출 자동 기록</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>일정·월별 집계 연동</li>
-        </ul>
-      </article>
-    </div>
-    <div class="perks">
-      <article class="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="6" rx="1.5"/><rect x="4" y="13" width="16" height="6" rx="1.5"/><path d="M8 8h.01M8 16h.01"/></svg><h3>호스팅·SSL 무료</h3><p>호스팅비는 무료 플랜으로 제공합니다(도메인 등록비만 실비).</p></article>
-      <article class="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="12" r="4"/><path d="M13 12h8M18 12v3M21 12v2"/></svg><h3>100% 소유권 이전</h3><p>고객님 본인 계정으로 소유합니다. 계약이 끝나도 사이트는 남습니다.</p></article>
-      <article class="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></svg><h3>AI 개발로 빠르게</h3><p>빠르면서도 완성도 있게 만듭니다.</p></article>
-    </div>
-    <p class="price-note">제작비·월 관리비는 제작 범위에 따라 달라집니다. <b>상담 후 안내</b>해 드립니다.</p>
-  </div>
-</section>
-
-<!-- 진행 과정 -->
-<section class="sec" id="process" style="padding-top:0" aria-labelledby="h-process">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="h-process">이렇게 진행됩니다.</h2>
-      <p class="sub">상담에서 배포까지, 무엇을 언제 하는지 미리 알려 드립니다.</p>
-    </div>
-    <svg class="pline" viewBox="0 0 1000 8" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="4" x2="1000" y2="4" pathLength="1"/></svg>
-    <ol class="flow4">
-      <li><b>무료 상담</b><span>하고 싶은 일을 한 줄로 알려 주세요. 맞는 구성, 견적, 지원금 가능 여부를 안내합니다.</span></li>
-      <li><b>업무 구조 파악</b><span>지금 어떤 업무가 어떻게 돌아가는지부터 확인하고, 필요한 화면과 기능을 정합니다.</span></li>
-      <li><b>디자인·개발</b><span>브랜드에 맞는 디자인과 실제 데이터로 도는 시스템을 만듭니다. 중간 화면을 보시고 수정합니다.</span></li>
-      <li><b>배포·인계</b><span>도메인·호스팅·SSL·검색 등록까지 마치고, 고객님 계정으로 소유권을 넘겨 드립니다.</span></li>
-    </ol>
-    <div class="dur"><span>Basic(소개형) 3~7일</span><span>Pro(업무 시스템) 2~4주</span></div>
-  </div>
-</section>
-
-<!-- 관리 범위 -->
-<section class="sec" id="care" style="padding-top:0" aria-labelledby="h-care">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="h-care">만든 뒤에도 관리합니다.</h2>
-      <p class="sub">제작 후 3개월은 무상으로 지원하고, 어디까지가 무상이고 어디부터 유상인지 미리 분명히 알려 드립니다.</p>
-    </div>
-    <div class="care">
-      <article class="cell">
-        <span class="tag" style="color:var(--accent-light)">무상 · 제작 후 3개월</span>
-        <h3>바로 처리해 드립니다</h3>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>오타 수정 · 문구 변경</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>기존 이미지 단순 교체</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>프로그램 오류 · 접속 장애 해결</li>
-        </ul>
-      </article>
-      <article class="cell c-ink">
-        <span class="tag" style="color:var(--accent-light)">유상 · 범위 안내 후 진행</span>
-        <h3>범위와 일정을 먼저 안내합니다</h3>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>홈페이지 리뉴얼(디자인·구조 개편)</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>새 페이지 · 새 기능 추가</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>회원 · 결제(PG) 시스템 연동</li>
-        </ul>
-      </article>
-    </div>
-    <ol class="steps4" aria-label="유지보수 요청 절차">
-      <li><b>요청 접수</b>메일로 수정사항을 전달합니다.</li>
-      <li><b>확인 및 안내</b>작업 범위를 확인해 무상·유상 여부와 일정을 알려 드립니다.</li>
-      <li><b>작업 진행</b>실제 코드를 수정하고 반영합니다.</li>
-      <li><b>완료 확인</b>고객님 검수 후 최종 완료 처리합니다.</li>
-    </ol>
-    <p class="price-note">무상 기간(3개월)이 끝나도 자동으로 유료 전환되지 않습니다. 이후 수정 요청이 있을 때만 월 구독형 유지보수나 건별 비용을 안내해 드립니다.</p>
-  </div>
-</section>
-
-<!-- 연간 비용 -->
-<section class="sec" id="cost" style="padding-top:0" aria-labelledby="h-cost">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="h-cost">운영 비용, 있는 그대로 안내합니다.</h2>
-      <p class="sub">홈페이지를 운영하려면 매년 드는 실비용이 있습니다. 이윤을 붙이지 않고 그대로 알려 드립니다.</p>
-    </div>
-    <ul class="cost3">
-      <li><b>도메인(인터넷 주소)</b><em>1~2만원 / 년</em><span>.com·.co.kr 등. 고객님 명의로 직접 등록·결제하고, 만료일은 저희가 미리 알려 드립니다.</span></li>
-      <li><b>호스팅</b><em>무료</em><span>검증된 클라우드 인프라의 무료 플랜을 사용합니다.</span></li>
-      <li><b>SSL 인증서(https)</b><em>무료</em><span>무료 인증기관(Let's Encrypt)으로 별도 신청 없이 자동 발급·적용됩니다.</span></li>
-    </ul>
-    <p class="price-note">제작비와 월 관리비는 제작 범위에 따라 달라지므로 상담 후 안내해 드립니다.</p>
-  </div>
-</section>
-
-<!-- 제작 후기·소식 -->
-<section class="sec" id="voice" style="padding-top:0" aria-labelledby="h-voice">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="h-voice">제작 후기와 소식</h2>
-      <p class="sub">실제로 일어난 일만 싣습니다.</p>
-    </div>
-    <div class="voice">
-      <article class="cell empty">
-        <span class="tag" style="color:var(--accent-light)">제작 후기</span>
-        <h3>아직 공개할 후기가 없습니다</h3>
-        <p>첫 고객님의 제작이 끝나면, 동의를 받은 실제 후기만 이곳에 그대로 싣겠습니다. 지어낸 후기는 올리지 않습니다.</p>
-      </article>
-      <article class="cell">
-        <span class="tag" style="color:var(--accent-light)">수주 소식 · 진행 현황</span>
-        <h3>지금 공개된 것</h3>
-        <ul>
-          <li>병원(피부과) 영업용 시안 공개</li>
-          <li>학원 영업용 시안 공개</li>
-          <li>중소기업 소개형 샘플 준비 중</li>
-        </ul>
-        <p style="margin-top:var(--s3)">실제 수주가 생기면 고객 동의를 받은 건만 이곳에 올립니다.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="sec faq" id="faq" style="padding-top:0" aria-labelledby="h-faq">
-  <div class="wrap">
-    <div class="sec-head"><h2 id="h-faq">자주 묻는 질문</h2></div>
-    <details><summary>병원·학원·산후조리원 홈페이지도 제작하나요?</summary><p>네. 병원(피부과), 학원, 산후조리원, 중소기업용 샘플을 위에 공개해 두었습니다. 업종과 상황에 맞춰 상담 후 구성합니다. 병원은 의료광고 규정에 맞춰 시술 후기·전후 사진·가격 유인 표현을 쓰지 않는 방향으로 만듭니다(실제 적용 전 법 원문 확인 필요).</p></details>
-    <details><summary>호스팅 비용을 안 내면 홈페이지가 사라지나요?</summary><p>WEBGUHYEON은 검증된 무료 인프라를 사용합니다. 장기간(1주일 이상) 접속이 없으면 데이터가 잠시 대기 상태로 전환될 수 있는데, 요청 즉시 저희가 바로 복구해 드리고 데이터는 안전하게 보존됩니다. 사이트 자체가 사라지는 일은 없습니다.</p></details>
-    <details><summary>타사에서 제작한 사이트도 유지보수만 맡길 수 있나요?</summary><p>가능합니다. 다만 기존 코드 구조를 먼저 파악해야 해서 초기 분석 시간이 별도로 필요할 수 있습니다.</p></details>
-    <details><summary>무상 기간(3개월)이 끝나면 자동으로 유료 전환되나요?</summary><p>자동 전환되지 않습니다. 이후 수정 요청이 있을 때만 월 구독형 유지보수나 건별 비용을 안내해 드립니다.</p></details>
-  </div>
-</section>
-
-<!-- 5 구현 범위 (어두운 구역) -->
-<section class="sec dark" id="scope" aria-labelledby="h-scope">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="h-scope">어디까지 구현되나요?</h2>
-      <p class="sub">말로 설명하는 대신, 이 페이지에서 직접 만져 보세요. 아래 세 가지는 모두 실제로 작동합니다.</p>
-    </div>
-    <div class="chips" aria-label="구현 가능 범위">
-      <span>반응형</span><span>모션·인터랙션</span><span>문의·예약 폼</span><span>로그인·관리자(Pro)</span><span>고객·매출 관리(Pro)</span><span>검색 등록(SEO)</span><span class="soon">AI 챗봇(준비 중)</span>
-    </div>
-    <div class="demos">
-      <div class="demo">
-        <h3>① 화면 전환</h3><p class="note">탭을 눌러 보세요.</p>
-        <div class="tabs" role="tablist" aria-label="구성 선택">
-          <button role="tab" aria-selected="true" aria-controls="p1" id="t1" type="button">소개형</button>
-          <button role="tab" aria-selected="false" aria-controls="p2" id="t2" type="button" tabindex="-1">예약·문의</button>
-          <button role="tab" aria-selected="false" aria-controls="p3" id="t3" type="button" tabindex="-1">관리 시스템</button>
+      <!-- 3대 안심 보증 바 -->
+      <div class="trust-bar">
+        <div class="trust-item">
+          <span style="font-size: 24px;">🛡️</span>
+          <div>
+            <strong>제작 후 3개월 무상 케어</strong>
+            <span>단순 오타·이미지 교체·오류 신속 대응</span>
+          </div>
         </div>
-        <div class="panel on" id="p1" role="tabpanel" aria-labelledby="t1"><b>소개형 홈페이지</b>사업을 알리는 소개·서비스·갤러리·오시는 길 화면입니다.</div>
-        <div class="panel" id="p2" role="tabpanel" aria-labelledby="t2"><b>문의·예약 접수</b>방문자가 남긴 문의가 이메일로 전달되고, 예약 일정과 이어집니다.</div>
-        <div class="panel" id="p3" role="tabpanel" aria-labelledby="t3"><b>고객·매출 관리(Pro)</b>로그인 후 고객·상담·매출을 한 화면에서 관리합니다.</div>
+        <div class="trust-item">
+          <span style="font-size: 24px;">🔑</span>
+          <div>
+            <strong>100% 고객 소유권 이전</strong>
+            <span>계약 종료 후에도 고객 명의 계정에 영구 보존</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span style="font-size: 24px;">⚡</span>
+          <div>
+            <strong>3~7일 빠른 납품</strong>
+            <span>Basic(소개형) 3~7일 / Pro(시스템형) 2~4주</span>
+          </div>
+        </div>
       </div>
-      <div class="demo">
-        <h3>② 업무 흐름</h3><p class="note">문의가 매출이 되기까지 자동으로 이어집니다.</p>
-        <ol class="flow" id="flow">
-          <li>문의 접수</li><li>상담 이력 기록</li><li>계약 완료</li><li>매출 자동 기록</li>
-        </ol>
+    </section>
+
+    <!-- 02. 업종별 샘플 쇼케이스 -->
+    <section id="works">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">직접 눌러서 테스트해 보세요</h2>
+          <p class="section-desc">단순 캡처 이미지가 아닙니다. 실제 동작하는 4개 업종별 데모 시안을 준비했습니다.</p>
+        </div>
+
+        <div class="grid-4">
+          <!-- 피부과 -->
+          <a href="samples/hospital-v7/" target="_blank" rel="noopener" class="sample-card">
+            <div>
+              <span class="sample-tag tag-clinic">병원 · 의원 Pro</span>
+              <h3>맑은결 피부과</h3>
+              <p>비급여 수가 투명 공개, 고민별 진료 안내, 진료 예약 시스템 및 의료법 규정 준수 레이아웃</p>
+            </div>
+            <div class="sample-link">
+              <span>시스템 체험하기</span> <span>→</span>
+            </div>
+          </a>
+
+          <!-- 학원 -->
+          <a href="samples/academy-v2/" target="_blank" rel="noopener" class="sample-card">
+            <div>
+              <span class="sample-tag tag-academy">학원 · 교육 Pro</span>
+              <h3>새봄학원</h3>
+              <p>온라인 레벨테스트 신청, 반별 시간표 조회, 학부모 실시간 알림 연동 및 입학 상담 접수</p>
+            </div>
+            <div class="sample-link">
+              <span>시스템 체험하기</span> <span>→</span>
+            </div>
+          </a>
+
+          <!-- 산후조리원 -->
+          <a href="samples/postpartum-v1/" target="_blank" rel="noopener" class="sample-card">
+            <div>
+              <span class="sample-tag tag-care">케어 · 시설 Pro</span>
+              <h3>포근산후조리원</h3>
+              <p>방문 투어 예약 캘린더, 하루 일정 및 주간 식단·위생 관리 안내, 실시간 상담 문의</p>
+            </div>
+            <div class="sample-link">
+              <span>시스템 체험하기</span> <span>→</span>
+            </div>
+          </a>
+
+          <!-- 중소기업 -->
+          <a href="samples/company-v1/" target="_blank" rel="noopener" class="sample-card">
+            <div>
+              <span class="sample-tag tag-company">기업 · B2B Basic</span>
+              <h3>다온시스템</h3>
+              <p>핵심 사업 분야 소개, 일하는 방식 및 포트폴리오 쇼케이스, 다이렉트 견적 의뢰 폼</p>
+            </div>
+            <div class="sample-link">
+              <span>시스템 체험하기</span> <span>→</span>
+            </div>
+          </a>
+        </div>
       </div>
-      <div class="demo">
-        <h3>③ 카드 반응</h3><p class="note">마우스를 올려 보세요(모바일은 눌러 보세요).</p>
-        <div class="hov" role="group" aria-label="카드 반응 예시"><div>예약</div><div>상담</div><div>매출</div><div>일정</div><div>고객</div><div>알림</div></div>
+    </section>
+
+    <!-- 03. 구현 범위 -->
+    <section id="scope" class="interactive-scope">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge">HANDS-ON EXPERIENCE</div>
+          <h2 class="section-title">어디까지 구현되는지 한눈에 보기</h2>
+          <p class="section-desc">웹구현이 제공하는 핵심 기능 흐름입니다. 방문자가 고객이 되는 전 과정을 연결합니다.</p>
+        </div>
+
+        <div class="scope-grid">
+          <div class="scope-box">
+            <h3>① 고객 접수 & 예약 자동화</h3>
+            <p>방문자가 남긴 문의나 진료/상담 예약이 관리자 이메일과 캘린더에 실시간으로 동기화됩니다.</p>
+            <div class="flow-step">
+              <strong>동작 순서:</strong> 문의 작성 → 즉시 이메일 전송 → 달력 일정 등록
+            </div>
+          </div>
+
+          <div class="scope-box">
+            <h3>② 관리자 대시보드 & 매출 관리 (Pro)</h3>
+            <p>직원별 로그인 권한을 분리하고, 접수된 고객 이력과 계약 상태, 월별 매출 통계를 한곳에서 확인합니다.</p>
+            <div class="flow-step">
+              <strong>동작 순서:</strong> 로그인 → 상담 이력 기록 → 계약 완료 → 매출 자동 집계
+            </div>
+          </div>
+
+          <div class="scope-box">
+            <h3>③ 검색 최적화(SEO) & 반응형 UI</h3>
+            <p>스마트폰, 태블릿, PC 기기별 반응형 최적화는 기본이며 네이버와 구글 웹마스터도구 표준 등록을 마칩니다.</p>
+            <div class="flow-step">
+              <strong>기본 지원:</strong> 네이버 서치어드바이저, 구글 서치콘솔 최적화 세팅
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- 6 지원금 -->
-<section class="sec gov" id="gov" aria-labelledby="h-gov">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="h-gov">지원금, 사실만 안내합니다.</h2>
-      <p class="sub">대상·금액·시기는 사업마다 다르고 해마다 바뀝니다. 공식 공고 기준으로 알려 드립니다.</p>
-    </div>
-    <div class="bento">
-      <article class="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg><h3>확인된 것만 안내</h3><p>공식 출처가 있는 지원사업만 보여 드립니다.</p></article>
-      <article class="cell c-ink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 3h6"/></svg><h3>3분 자가점검</h3><p>업종·매출·지역을 고르면 살펴볼 만한 지원사업을 공식 출처와 함께 보여 드립니다.</p><a class="arrow" href="support/">내 사업장 지원금 확인하기 →</a></article>
-      <article class="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><h3>못 받는 경우도 알려 드려요</h3><p>받을 수 없거나 홈페이지에 쓸 수 없는 지원금은 그렇다고 말씀드립니다.</p></article>
-    </div>
-    <ol class="way" aria-label="진행 순서">
-      <li><b>1. 업종·지역 선택</b>3분 자가점검</li>
-      <li><b>2. 후보 확인</b>공식 출처와 함께</li>
-      <li><b>3. 공고 원문 확인</b>조건·시기 점검</li>
-      <li><b>4. 신청</b>대표님이 직접, 저희는 옆에서 챙깁니다</li>
-    </ol>
-    <table class="tbl">
-      <caption>지원사업 확인 현황 (2026-10-15 확인)</caption>
-      <thead><tr><th>사업</th><th>홈페이지 제작에 쓸 수 있나</th><th>확인 상태</th></tr></thead>
-      <tbody>
-        <tr><th scope="row">소상공인 경영안정 바우처</th><td>쓸 수 없음 (공과금·4대 보험료용)</td><td><span class="st no">공식 확인</span></td></tr>
-        <tr><th scope="row">중소기업 혁신바우처</th><td>가능 (마케팅 중 홍보·광고 지원에 홈페이지 제작 포함으로 설명됨)</td><td><span class="st chk">공식 문서 재확인 필요</span></td></tr>
-        <tr><th scope="row">“디지털전환바우처 500만 원” 안내</th><td>2026년 공식 공고에서 확인하지 못했습니다</td><td><span class="st chk">사용 전 확인 필요</span></td></tr>
-      </tbody>
-    </table>
-    <p class="fine">공식 문서로 직접 확인한 것과 확인이 더 필요한 것을 나눠서 알려 드립니다. 신청 전에는 반드시 해당 공고문과 담당 기관에서 최종 확인하세요.</p>
-    <p class="fine">* 지원 조건·시기는 매년 변경됩니다. 신청 가능 여부는 상담에서 확인해 드립니다.</p>
-  </div>
-</section>
+    <!-- 04. 플랜 비교 -->
+    <section id="service">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">목적에 맞춘 2가지 플랜</h2>
+          <p class="section-desc">우리 사업장의 운영 형태와 예산에 알맞은 방식을 선택하세요.</p>
+        </div>
 
-<!-- 7 문의 -->
-<section class="sec" id="contact" style="padding-top:0" aria-labelledby="h-contact">
-  <div class="wrap contact">
-    <div>
-      <h2 id="h-contact">무료 상담</h2>
-      <p class="sub" style="margin-top:16px;color:var(--soft)">하고 싶은 일을 한 줄로 적어 주세요. 맞는 구성과 견적, 지원금 가능 여부를 안내해 드립니다.</p>
-      <div class="ways">
-        <div class="cell"><h3 style="font-size:1.15rem">전화로 문의</h3><p><a href="tel:01089405067">010-8940-5067</a></p></div>
-        <div class="cell"><h3 style="font-size:1.15rem">이메일로 문의</h3><p><a href="mailto:kwak_jaewon@naver.com">kwak_jaewon@naver.com</a></p></div>
-        <div class="cell"><h3 style="font-size:1.15rem">카카오톡 문의</h3><p>채널을 준비하고 있어요. 준비되면 이곳에서 바로 연결됩니다.</p></div>
+        <div class="plan-grid">
+          <!-- BASIC -->
+          <div class="plan-card">
+            <div>
+              <span class="sample-tag tag-company">소개형 웹사이트</span>
+              <h3 style="font-size: 22px; font-weight: 800; color: var(--dark); margin-bottom: 6px;">Basic 플랜</h3>
+              <p class="plan-lead">브랜드와 서비스를 신뢰감 있게 전달하고, 온라인 문의를 받는 최적의 공식 웹사이트</p>
+              
+              <div class="plan-meta">
+                <span>제작 소요 기간</span>
+                <strong>3 ~ 7일 완성</strong>
+              </div>
+
+              <ul class="plan-list">
+                <li>✓ PC / 태블릿 / 모바일 반응형 완벽 대응</li>
+                <li>✓ 100% 고객 명의 계정 소유권 이전</li>
+                <li>✓ 문의 폼 및 이메일 실시간 알림 연동</li>
+                <li>✓ 네이버 / 구글 검색 포털 표준 등록</li>
+                <li>✓ 호스팅 0원 세팅 (클라우드 인프라 활용)</li>
+                <li>✓ 3개월 무상 수정 및 오류 대응</li>
+              </ul>
+            </div>
+            <a href="#contact" class="plan-btn plan-btn-default">Basic 맞춤 견적 문의</a>
+          </div>
+
+          <!-- PRO -->
+          <div class="plan-card featured">
+            <div class="featured-badge">병원·학원 강력 추천</div>
+            <div>
+              <span class="sample-tag tag-clinic">업무 시스템 연동형</span>
+              <h3 style="font-size: 22px; font-weight: 800; color: var(--dark); margin-bottom: 6px;">Pro 플랜</h3>
+              <p class="plan-lead">공개 웹페이지에 관리자 로그인, 예약 캘린더, 고객 및 매출 관리 백엔드를 결합한 시스템</p>
+              
+              <div class="plan-meta">
+                <span>제작 소요 기간</span>
+                <strong style="color: var(--primary);">2 ~ 4주 소요</strong>
+              </div>
+
+              <ul class="plan-list">
+                <li>✓ <strong>Basic 플랜의 모든 기능 기본 포함</strong></li>
+                <li>✓ 직원별 관리자 로그인 및 보안 권한 부여</li>
+                <li>✓ 실시간 온라인 예약 시스템 & 캘린더 연동</li>
+                <li>✓ 상담 이력 DB화 및 계약 상태 관리</li>
+                <li>✓ 월별 매출/인입 통계 자동 대시보드</li>
+                <li>✓ 3개월 무상 수정 및 오류 대응</li>
+              </ul>
+            </div>
+            <a href="#contact" class="plan-btn plan-btn-primary">Pro 플랜 견적 문의</a>
+          </div>
+        </div>
       </div>
-    </div>
-    <form id="form" novalidate aria-labelledby="h-contact">
-      <div><label for="f-biz">업종 · 하시는 일 (필수)</label><input id="f-biz" name="biz" type="text" autocomplete="off" required></div>
-      <div><label for="f-nm">성함 · 상호 (필수)</label><input id="f-nm" name="nm" type="text" autocomplete="name" required></div>
-      <div><label for="f-tel">연락처 (전화 또는 이메일) (필수)</label><input id="f-tel" name="tel" type="text" autocomplete="tel" required></div>
-      <div><label for="f-msg">하고 싶은 일</label><textarea id="f-msg" name="msg"></textarea></div>
-      <label class="consent"><input id="f-agree" type="checkbox" required><span>문의 응대를 위해 성함·연락처를 수집하며, 응대가 끝나면 지체 없이 파기합니다. (필수)</span></label>
-      <div class="err" id="f-err" aria-live="polite"></div>
-      <button class="btn btn--fill" type="submit">무료 상담 신청</button>
-    </form>
-  </div>
-</section>
-</main>
+    </section>
 
-<footer>
-  <div class="wrap"><span>© 웹구현 WEBGUHYEON — 병원 홈페이지 제작 · 학원 홈페이지 제작 · 소상공인 홈페이지 제작 · 중소기업 홈페이지 제작 · 업무 시스템 · 유지보수</span><span>문의 <a href="tel:01089405067">010-8940-5067</a> · <a href="mailto:kwak_jaewon@naver.com">kwak_jaewon@naver.com</a></span><span class="biz">상호 사심콜렉트 · 대표 박선주 · 사업자등록번호 551-17-01728 · 통신판매업신고 제2022-서울노원-0450호</span><span class="credit">예시 사진: Unsplash</span></div>
-</footer>
+    <!-- 05. 비용 원가 공개 및 3개월 케어 -->
+    <section id="cost" style="border-top: 1px solid var(--border);">
+      <div class="container" style="max-width: 960px;">
+        <div class="section-header">
+          <h2 class="section-title">거품 없는 투명한 운영 실비</h2>
+          <p class="section-desc">유지보수비 명목으로 매월 불필요한 고정 비용을 청구하지 않습니다.</p>
+        </div>
 
-<a class="btn btn--fill fab" id="fab" href="#contact">무료 상담</a>
+        <div class="cost-grid">
+          <div class="cost-card">
+            <div class="cost-label">도메인 등록비 (.com/.kr)</div>
+            <div class="cost-value">연 1~2만 원대 (실비)</div>
+            <div class="cost-sub">고객님 명의로 직접 결제, 마진 0원</div>
+          </div>
+          <div class="cost-card">
+            <div class="cost-label">서버 및 호스팅 비용</div>
+            <div class="cost-value free">매월 0원 (무료 플랜)</div>
+            <div class="cost-sub">글로벌 클라우드 무료 티어 인프라 활용</div>
+          </div>
+          <div class="cost-card">
+            <div class="cost-label">보안 SSL 인증서 (https)</div>
+            <div class="cost-value free">영구 무료 (0원)</div>
+            <div class="cost-sub">Let's Encrypt 자동 발급 및 갱신 세팅</div>
+          </div>
+        </div>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-<script>
-(function(){
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+        <div class="care-note">
+          💡 <strong>3개월 무상 케어 안내:</strong> 제작 납품 후 3개월간 오타 수정, 이미지 단순 교체, 시스템 오류는 무상으로 즉시 처리해 드립니다. 무상 기간이 끝난 후에도 자동으로 유료 결제되지 않으며, 수정 사항 발생 시에만 실비로 협의 진행합니다.
+        </div>
+      </div>
+    </section>
 
-  /* 메뉴·카톡 안내 */
-  var burger=$('#burger'),menu=$('#menu');
-  burger.addEventListener('click',function(){var on=menu.classList.toggle('on');burger.setAttribute('aria-expanded',on)});
-  $$('#menu a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('on');burger.setAttribute('aria-expanded','false')})});
-  var kb=$('#kakaoBtn'),kn=$('#kakaoNote');
-  kb.addEventListener('click',function(){var on=kn.classList.toggle('on');kb.setAttribute('aria-expanded',on)});
-  document.addEventListener('click',function(e){if(!e.target.closest('.kwrap')){kn.classList.remove('on');kb.setAttribute('aria-expanded','false')}});
+    <!-- 06. 정부지원금 팩트체크 -->
+    <section id="gov" class="container">
+      <div class="gov-banner">
+        <div class="gov-content">
+          <span class="gov-badge">FACT CHECK ONLY</span>
+          <h3 class="gov-title">정부지원금, 과장 없이 공고 사실만 확인해 드립니다</h3>
+          <p class="gov-desc">
+            "무조건 전액 지원"이라는 거짓 영업에 속지 마세요. 우리 사업장이 실제로 홈페이지 제작비에 활용 가능한 정부 바우처(중소기업 혁신바우처 등)가 있는지 공식 공고 기준으로 확인해 드립니다.
+          </p>
+        </div>
+        <div>
+          <a href="#contact" class="gov-btn">지원금 가능 여부 문의 →</a>
+        </div>
+      </div>
+    </section>
 
-  /* 샘플 화면(iframe) 크기 맞추기 */
-  function fit(){$$('[data-view]').forEach(function(m){var v=$('.view',m),f=$('iframe',v);if(!v||!f)return;var base=parseFloat(m.getAttribute('data-base'))||1280;f.style.transform='scale('+(v.clientWidth/base)+')'})}
-  fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);
+    <!-- 07. Contact Form (CTA) -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="contact-card">
+          <div style="text-align: center; margin-bottom: 28px;">
+            <h2 style="font-size: 24px; font-weight: 800; color: var(--dark); margin-bottom: 6px;">30초 만에 끝나는 맞춤 견적 문의</h2>
+            <p style="font-size: 14px; color: var(--gray);">업종과 원하시는 형태만 남겨주시면, 예상 견적과 일정표를 안내해 드립니다.</p>
+          </div>
 
-  /* 탭 데모 */
-  var tabs=$$('[role=tab]');
-  tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;$('#'+x.getAttribute('aria-controls')).classList.toggle('on',on)})});
-    t.addEventListener('keydown',function(e){var i=tabs.indexOf(t);if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];n.focus();n.click()}})});
+          <form action="mailto:kwak_jaewon@naver.com" method="GET">
+            <div class="form-group">
+              <label>업종 선택</label>
+              <select name="subject" required>
+                <option value="[견적문의] 병원/의원 홈페이지">병원 / 의원</option>
+                <option value="[견적문의] 학원/교육기관 홈페이지">학원 / 교육기관</option>
+                <option value="[견적문의] 산후조리원/케어시설 홈페이지">산후조리원 / 케어시설</option>
+                <option value="[견적문의] 중소기업/B2B 홈페이지">중소기업 / 전문직 B2B</option>
+                <option value="[견적문의] 기타 맞춤 홈페이지">기타 맞춤 업종</option>
+              </select>
+            </div>
 
-  /* 업무 흐름 데모(움직임 줄이기면 전체 표시) */
-  var flow=$$('#flow li');
-  if(reduce){flow.forEach(function(l){l.classList.add('on')})}
-  else{var k=0;setInterval(function(){flow.forEach(function(l,i){l.classList.toggle('on',i<=k)});k=(k+1)%(flow.length+1)},900)}
+            <div class="form-row">
+              <div class="form-group">
+                <label>담당자 / 대표자 성명</label>
+                <input type="text" name="name" placeholder="홍길동" required>
+              </div>
+              <div class="form-group">
+                <label>연락처</label>
+                <input type="tel" name="phone" placeholder="010-0000-0000" required>
+              </div>
+            </div>
 
-  /* 고정 문의 버튼 (M5) */
-  var fab=$('#fab');
-  function fabCheck(){fab.classList.toggle('on',window.scrollY>600 && !isContactVisible())}
-  function isContactVisible(){var c=$('#contact').getBoundingClientRect();return c.top<window.innerHeight*0.7}
-  window.addEventListener('scroll',fabCheck,{passive:true});fabCheck();
+            <div class="form-group">
+              <label>희망 오픈 일정</label>
+              <select name="schedule">
+                <option value="1~2주 이내">1~2주 이내 (빠른 런칭 희망)</option>
+                <option value="1개월 이내">1개월 이내</option>
+                <option value="상담 후 결정">일정 여유 있음 (상담 후 결정)</option>
+              </select>
+            </div>
 
-  /* 문의 폼: 이메일 앱으로 전달(서버 없음) */
-  $('#form').addEventListener('submit',function(e){e.preventDefault();var err=$('#f-err');err.textContent='';
-    var v=function(id){return $(id).value.trim()};
-    if(!v('#f-biz')){err.textContent='업종·하시는 일을 적어 주세요.';$('#f-biz').focus();return}
-    if(!v('#f-nm')){err.textContent='성함 또는 상호를 적어 주세요.';$('#f-nm').focus();return}
-    if(!v('#f-tel')){err.textContent='연락처를 적어 주세요.';$('#f-tel').focus();return}
-    if(!$('#f-agree').checked){err.textContent='개인정보 수집·이용에 동의해 주세요.';$('#f-agree').focus();return}
-    var body='업종·하시는 일: '+v('#f-biz')+'\n성함·상호: '+v('#f-nm')+'\n연락처: '+v('#f-tel')+'\n하고 싶은 일: '+v('#f-msg');
-    window.location.href='mailto:kwak_jaewon@naver.com?subject='+encodeURIComponent('[WEBGUHYEON] 무료 상담 신청')+'&body='+encodeURIComponent(body);
-    err.textContent='메일 작성 창이 열립니다. 보내기를 눌러 주세요.';
-  });
+            <div class="form-group">
+              <label>문의 내용 (선택)</label>
+              <textarea name="body" rows="3" placeholder="참고하고 계신 사이트가 있거나 특별히 필요한 기능이 있다면 간단히 적어주세요."></textarea>
+            </div>
 
-  /* ===== 모션 (최대 5개, 0.6초 이하, 움직임 줄이기 설정이면 끔) ===== */
-  if(reduce||!window.gsap){return}
-  gsap.registerPlugin(ScrollTrigger,window.SplitText||{});
-  var ease='power3.out';
-  /* M1 첫 화면 문장 단어별 등장 */
-  if(window.SplitText){
-    (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){var sp=SplitText.create('#h1',{type:'words'});
-    gsap.from(sp.words,{yPercent:60,opacity:0,duration:.9,stagger:.06,ease:ease})});
-  }else{gsap.from('#h1',{y:24,opacity:0,duration:.6,ease:ease})}
-  /* M2 숫자 카운트업 */
-  $$('[data-count]').forEach(function(el){
-    var nums=el.getAttribute('data-count').split(',').map(Number),suf=el.getAttribute('data-suffix')||'';
-    var o={a:0,b:0};
-    function paint(){el.textContent=(nums.length>1?Math.round(o.a)+'~'+Math.round(o.b):Math.round(o.a))+suf}
-    paint();
-    ScrollTrigger.create({trigger:el,start:'top bottom',once:true,onEnter:function(){
-      gsap.to(o,{a:nums[0],b:nums.length>1?nums[1]:0,duration:.6,ease:ease,onUpdate:paint});
-    }});
-  });
-  /* 진행선 그리기 */
-  var pl=$('.pline line'); if(pl){gsap.fromTo(pl,{strokeDasharray:1,strokeDashoffset:1},{strokeDashoffset:0,duration:.6,ease:ease,scrollTrigger:{trigger:'.pline',start:'top 88%',once:true}})}
-  /* 확대 모션: 전 구역 스크롤 등장 */
-  var rv=$$('.band>.wrap>div,.sec-head,.work,.bento .cell,.plan .cell,.perks .cell,.flow4 li,.care .cell,.steps4 li,.cost3 li,.faq details,.voice .cell,.demo,.way li,.contact>*,.steps li');
-  gsap.set(rv,{opacity:0,y:44});
-  ScrollTrigger.batch(rv,{start:'top 90%',once:true,onEnter:function(b){gsap.to(b,{opacity:1,y:0,duration:1,stagger:.12,ease:ease,clearProps:'transform'})}});
-  /* 제목 밑줄 늘어남 */
-  $$('.sec-head h2').forEach(function(h){gsap.fromTo(h,{'--ul':0},{'--ul':1,duration:1,ease:ease,scrollTrigger:{trigger:h,start:'top 88%',once:true}})});
-  /* 첫 화면 배경 구체 떠다님 + 콜라주 부유 */
-  gsap.to('.blob.b1',{y:50,x:-30,duration:6,yoyo:true,repeat:-1,ease:'sine.inOut'});
-  gsap.to('.blob.b2',{y:-40,x:40,duration:7,yoyo:true,repeat:-1,ease:'sine.inOut'});
-  $$('.col').forEach(function(c,i){gsap.to(c,{y:i%2?-10:10,duration:3+i*.4,yoyo:true,repeat:-1,ease:'sine.inOut',delay:1.2})});
-  /* 스크롤 따라 구체 이동 */
-  gsap.to('.hero .blob',{yPercent:60,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
-  /* M4 샘플 화면 스크롤 시 이동(패럴랙스) */
-  $$('[data-par]').forEach(function(m,i){
-    gsap.fromTo(m,{y:i?36:-12},{y:i?-12:36,ease:'none',scrollTrigger:{trigger:m,start:'top bottom',end:'bottom top',scrub:.6}});
-  });
-})();
-</script>
-</body>
-</html>
+            <button type="submit" class="submit-btn">맞춤 견적 및 지원금 확인 요청하기</button>
+
+            <div class="contact-direct">
+              급한 문의는 📞 <a href="tel:010-894
