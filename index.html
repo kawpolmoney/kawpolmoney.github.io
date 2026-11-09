@@ -64,6 +64,7 @@
     a { text-decoration: none; color: inherit; }
     button, select, input, textarea { font-family: inherit; }
 
+    /* Header */
     header {
       position: sticky;
       top: 0;
@@ -110,9 +111,10 @@
     }
     .header-cta:hover { background: var(--primary-hover); }
 
+    /* Layout & Sections */
     section { padding: 80px 20px; }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 44px; }
+    .container { max-width: 1140px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 48px; }
     .badge {
       display: inline-flex;
       align-items: center;
@@ -140,626 +142,195 @@
       margin: 0 auto;
     }
 
-    .hero { text-align: center; padding: 90px 20px 70px; }
-    .hero h1 {
-      font-size: clamp(32px, 5.5vw, 50px);
+    /* 01. Hero with Live Mockup (2-Column Split) */
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 48px;
+      padding: 70px 20px 60px;
+    }
+    .hero-text { text-align: left; }
+    .hero-text h1 {
+      font-size: clamp(32px, 4.2vw, 48px);
       font-weight: 900;
       color: var(--dark);
       line-height: 1.25;
       letter-spacing: -0.03em;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
-    .hero h1 span { color: var(--primary); }
-    .hero p {
-      font-size: clamp(16px, 2.5vw, 19px);
+    .hero-text h1 span { color: var(--primary); }
+    .hero-text p {
+      font-size: clamp(16px, 2vw, 18px);
       color: var(--slate);
-      max-width: 680px;
-      margin: 0 auto 36px;
+      margin-bottom: 32px;
+      line-height: 1.6;
     }
     .hero-btn-group {
       display: flex;
-      justify-content: center;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
     .btn-primary {
       background: var(--primary);
       color: #fff;
-      padding: 16px 32px;
+      padding: 15px 30px;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       box-shadow: 0 4px 14px rgba(0, 102, 255, 0.28);
       transition: all 0.2s;
     }
     .btn-primary:hover {
       background: var(--primary-hover);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
     .btn-subtle {
       background: var(--bg-subtle);
       color: var(--dark);
       border: 1px solid var(--border);
-      padding: 16px 28px;
+      padding: 15px 24px;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
     }
 
-    .trust-bar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 18px;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
+    /* Trust 3-Item Row */
+    .hero-trust-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+    .trust-chip { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--slate); }
+
+    /* Device Mockup Visual (Laptop + Floating Phone) */
+    .mockup-stage {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .laptop-frame {
+      width: 100%;
+      max-width: 480px;
+      background: #1e293b;
+      border-radius: 14px 14px 0 0;
+      padding: 10px 10px 0;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+      border: 2px solid #334155;
+    }
+    .laptop-bar {
+      height: 16px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding-left: 6px;
+      background: #0f172a;
+      border-radius: 6px 6px 0 0;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+    .laptop-screen {
+      background: #ffffff;
+      border-radius: 0 0 4px 4px;
+      overflow: hidden;
+      padding: 16px;
+      font-size: 12px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+    }
+    .laptop-base {
+      width: 110%;
+      margin-left: -5%;
+      height: 12px;
+      background: #94a3b8;
+      border-radius: 0 0 14px 14px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    /* Screen internal graphic */
+    .mini-web-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .mini-web-hero {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
       text-align: left;
     }
-    .trust-item { display: flex; gap: 14px; align-items: flex-start; }
-    .trust-item strong { display: block; font-size: 16px; color: var(--dark); margin-bottom: 2px; }
-    .trust-item span { font-size: 13px; color: var(--gray); }
+    .mini-web-hero strong { display: block; font-size: 14px; color: #1e3a8a; margin-bottom: 4px; }
+    .mini-web-hero span { font-size: 11px; color: #3b82f6; }
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .mini-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 11px;
+    }
 
+    /* Phone Floating Mockup */
+    .phone-mockup {
+      position: absolute;
+      right: -20px;
+      bottom: -30px;
+      width: 180px;
+      background: #0f172a;
+      border: 4px solid #334155;
+      border-radius: 24px;
+      padding: 8px;
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3);
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .phone-notch {
+      width: 50px;
+      height: 8px;
+      background: #000;
+      border-radius: 4px;
+      margin: 0 auto 8px;
+    }
+    .phone-screen {
+      background: #fff;
+      border-radius: 16px;
+      padding: 10px;
+      font-size: 10px;
+      text-align: left;
+    }
+    .alert-pill {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 6px;
+      padding: 6px;
+      margin-bottom: 8px;
+      color: #065f46;
+      font-weight: 600;
+    }
+
+    /* 02. Browser Window Showcase (Samples) */
     .grid-4 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
     }
-    .sample-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    }
-    .sample-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
-      border-color: var(--primary);
-    }
-    .sample-tag {
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 4px;
-      display: inline-block;
-      margin-bottom: 12px;
-    }
-    .tag-clinic { background: #eaf2ff; color: #0066ff; }
-    .tag-academy { background: #e8f5e9; color: #2e7d32; }
-    .tag-care { background: #fbe9e7; color: #d84315; }
-    .tag-company { background: #eceff1; color: #455a64; }
-    .sample-card h3 { font-size: 20px; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
-    .sample-card p { font-size: 13px; color: var(--gray); line-height: 1.5; margin-bottom: 20px; }
-    .sample-link {
-      border-top: 1px solid var(--border);
-      padding-top: 14px;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--primary);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .interactive-scope { background: var(--bg-subtle); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .scope-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    .scope-box {
+    .browser-card {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 24px;
-    }
-    .scope-box h3 { font-size: 17px; font-weight: 800; color: var(--dark); margin-bottom: 10px; }
-    .scope-box p { font-size: 14px; color: var(--gray); line-height: 1.6; margin-bottom: 16px; }
-    .scope-box .flow-step {
-      background: var(--bg-subtle);
-      border-left: 3px solid var(--primary);
-      padding: 10px 14px;
-      font-size: 13px;
-      color: var(--dark);
-      border-radius: 0 6px 6px 0;
-    }
-
-    .plan-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-      gap: 24px;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    .plan-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 34px 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .plan-card.featured {
-      border: 2px solid var(--primary);
-      position: relative;
-      box-shadow: 0 8px 30px rgba(0, 102, 255, 0.08);
-    }
-    .featured-badge {
-      position: absolute;
-      top: -12px;
-      right: 24px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 12px;
-    }
-    .plan-lead { font-size: 14px; color: var(--gray); margin-bottom: 24px; min-height: 42px; }
-    .plan-meta { padding-bottom: 18px; margin-bottom: 22px; border-bottom: 1px solid var(--border); }
-    .plan-meta span { font-size: 12px; color: var(--gray); display: block; margin-bottom: 4px; }
-    .plan-meta strong { font-size: 19px; font-weight: 800; color: var(--dark); }
-    .plan-list { list-style: none; margin-bottom: 30px; font-size: 14px; line-height: 2.1; color: var(--slate); }
-    .plan-btn {
-      display: block;
-      text-align: center;
-      padding: 14px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 15px;
-    }
-    .plan-btn-default { background: var(--bg-subtle); border: 1px solid var(--border); color: var(--dark); }
-    .plan-btn-primary { background: var(--primary); color: #fff; }
-
-    .cost-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    .cost-card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      background: var(--white);
-    }
-    .cost-label { font-size: 13px; color: var(--gray); }
-    .cost-value { font-size: 22px; font-weight: 800; color: var(--dark); margin: 6px 0; }
-    .cost-value.free { color: var(--primary); }
-    .cost-sub { font-size: 12px; color: var(--gray); }
-    .care-note {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px 24px;
-      font-size: 14px;
-      color: var(--slate);
-      line-height: 1.6;
-    }
-
-    .gov-banner {
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      border-radius: 16px;
-      padding: 40px 32px;
-      color: #fff;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-    }
-    .gov-content { max-width: 640px; }
-    .gov-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      color: #38bdf8;
-      background: rgba(56, 189, 248, 0.15);
-      padding: 4px 10px;
-      border-radius: 20px;
-      margin-bottom: 12px;
-    }
-    .gov-title { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
-    .gov-desc { font-size: 14px; color: #cbd5e1; line-height: 1.6; }
-    .gov-btn {
-      background: #38bdf8;
-      color: #0f172a;
-      padding: 14px 26px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .contact-section { background: var(--bg-subtle); border-top: 1px solid var(--border); }
-    .contact-card {
-      max-width: 620px;
-      margin: 0 auto;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px 32px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-    }
-    .form-group { margin-bottom: 18px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    label { display: block; font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
-    input, select, textarea {
-      width: 100%;
-      padding: 13px 14px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    input:focus, select:focus, textarea:focus { border-color: var(--primary); }
-    .submit-btn {
-      width: 100%;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      padding: 16px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 800;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: background 0.2s;
-    }
-    .submit-btn:hover { background: var(--primary-hover); }
-    .contact-direct {
-      text-align: center;
-      margin-top: 22px;
-      font-size: 13px;
-      color: var(--gray);
-    }
-    .contact-direct a { color: var(--dark); font-weight: 700; text-decoration: underline; }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 50px 20px;
-      background: #fff;
-      font-size: 13px;
-      color: var(--gray);
-      line-height: 1.8;
-    }
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    @media (max-width: 768px) {
-      nav { display: none; }
-      .form-row { grid-template-columns: 1fr; }
-      .gov-banner { text-align: center; justify-content: center; }
-      .contact-card { padding: 28px 20px; }
-    }
-  </style>
-</head>
-<body id="top">
-
-  <!-- Header -->
-  <header>
-    <div class="nav-container">
-      <a href="#top" class="logo">WEB<span>GUHYEON</span></a>
-      <nav>
-        <ul>
-          <li><a href="#works">업종별 샘플</a></li>
-          <li><a href="#scope">구현 범위</a></li>
-          <li><a href="#service">플랜 비교</a></li>
-          <li><a href="#cost">운영 실비</a></li>
-          <li><a href="#gov">정부지원금</a></li>
-        </ul>
-      </nav>
-      <a href="#contact" class="header-cta">무료 견적 문의</a>
-    </div>
-  </header>
-
-  <main>
-    <!-- 01. Hero -->
-    <section class="hero container">
-      <div class="badge">⚡ 실제 작동하는 인터랙티브 시스템 시안 제공</div>
-      <h1>
-        예약부터 매출 기록까지 실제로 도는<br>
-        <span>우리 병원·학원·기업 맞춤형</span> 홈페이지
-      </h1>
-      <p>
-        보여주기식 껍데기만 만들지 않습니다. 상담 문의 접수, 일정 관리, 고객 데이터 자동 기록까지 실제 비즈니스가 멈춤 없이 돌아가는 시스템으로 구현해 드립니다.
-      </p>
-      <div class="hero-btn-group">
-        <a href="#works" class="btn-primary">실제 작동 샘플 만져보기 →</a>
-        <a href="#contact" class="btn-subtle">30초 간편 견적 신청</a>
-      </div>
-
-      <!-- 3대 안심 보증 바 -->
-      <div class="trust-bar">
-        <div class="trust-item">
-          <span style="font-size: 24px;">🛡️</span>
-          <div>
-            <strong>제작 후 3개월 무상 케어</strong>
-            <span>단순 오타·이미지 교체·오류 신속 대응</span>
-          </div>
-        </div>
-        <div class="trust-item">
-          <span style="font-size: 24px;">🔑</span>
-          <div>
-            <strong>100% 고객 소유권 이전</strong>
-            <span>계약 종료 후에도 고객 명의 계정에 영구 보존</span>
-          </div>
-        </div>
-        <div class="trust-item">
-          <span style="font-size: 24px;">⚡</span>
-          <div>
-            <strong>3~7일 빠른 납품</strong>
-            <span>Basic(소개형) 3~7일 / Pro(시스템형) 2~4주</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 02. 업종별 샘플 쇼케이스 -->
-    <section id="works">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">직접 눌러서 테스트해 보세요</h2>
-          <p class="section-desc">단순 캡처 이미지가 아닙니다. 실제 동작하는 4개 업종별 데모 시안을 준비했습니다.</p>
-        </div>
-
-        <div class="grid-4">
-          <!-- 피부과 -->
-          <a href="samples/hospital-v7/" target="_blank" rel="noopener" class="sample-card">
-            <div>
-              <span class="sample-tag tag-clinic">병원 · 의원 Pro</span>
-              <h3>맑은결 피부과</h3>
-              <p>비급여 수가 투명 공개, 고민별 진료 안내, 진료 예약 시스템 및 의료법 규정 준수 레이아웃</p>
-            </div>
-            <div class="sample-link">
-              <span>시스템 체험하기</span> <span>→</span>
-            </div>
-          </a>
-
-          <!-- 학원 -->
-          <a href="samples/academy-v2/" target="_blank" rel="noopener" class="sample-card">
-            <div>
-              <span class="sample-tag tag-academy">학원 · 교육 Pro</span>
-              <h3>새봄학원</h3>
-              <p>온라인 레벨테스트 신청, 반별 시간표 조회, 학부모 실시간 알림 연동 및 입학 상담 접수</p>
-            </div>
-            <div class="sample-link">
-              <span>시스템 체험하기</span> <span>→</span>
-            </div>
-          </a>
-
-          <!-- 산후조리원 -->
-          <a href="samples/postpartum-v1/" target="_blank" rel="noopener" class="sample-card">
-            <div>
-              <span class="sample-tag tag-care">케어 · 시설 Pro</span>
-              <h3>포근산후조리원</h3>
-              <p>방문 투어 예약 캘린더, 하루 일정 및 주간 식단·위생 관리 안내, 실시간 상담 문의</p>
-            </div>
-            <div class="sample-link">
-              <span>시스템 체험하기</span> <span>→</span>
-            </div>
-          </a>
-
-          <!-- 중소기업 -->
-          <a href="samples/company-v1/" target="_blank" rel="noopener" class="sample-card">
-            <div>
-              <span class="sample-tag tag-company">기업 · B2B Basic</span>
-              <h3>다온시스템</h3>
-              <p>핵심 사업 분야 소개, 일하는 방식 및 포트폴리오 쇼케이스, 다이렉트 견적 의뢰 폼</p>
-            </div>
-            <div class="sample-link">
-              <span>시스템 체험하기</span> <span>→</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03. 구현 범위 -->
-    <section id="scope" class="interactive-scope">
-      <div class="container">
-        <div class="section-header">
-          <div class="badge">HANDS-ON EXPERIENCE</div>
-          <h2 class="section-title">어디까지 구현되는지 한눈에 보기</h2>
-          <p class="section-desc">웹구현이 제공하는 핵심 기능 흐름입니다. 방문자가 고객이 되는 전 과정을 연결합니다.</p>
-        </div>
-
-        <div class="scope-grid">
-          <div class="scope-box">
-            <h3>① 고객 접수 & 예약 자동화</h3>
-            <p>방문자가 남긴 문의나 진료/상담 예약이 관리자 이메일과 캘린더에 실시간으로 동기화됩니다.</p>
-            <div class="flow-step">
-              <strong>동작 순서:</strong> 문의 작성 → 즉시 이메일 전송 → 달력 일정 등록
-            </div>
-          </div>
-
-          <div class="scope-box">
-            <h3>② 관리자 대시보드 & 매출 관리 (Pro)</h3>
-            <p>직원별 로그인 권한을 분리하고, 접수된 고객 이력과 계약 상태, 월별 매출 통계를 한곳에서 확인합니다.</p>
-            <div class="flow-step">
-              <strong>동작 순서:</strong> 로그인 → 상담 이력 기록 → 계약 완료 → 매출 자동 집계
-            </div>
-          </div>
-
-          <div class="scope-box">
-            <h3>③ 검색 최적화(SEO) & 반응형 UI</h3>
-            <p>스마트폰, 태블릿, PC 기기별 반응형 최적화는 기본이며 네이버와 구글 웹마스터도구 표준 등록을 마칩니다.</p>
-            <div class="flow-step">
-              <strong>기본 지원:</strong> 네이버 서치어드바이저, 구글 서치콘솔 최적화 세팅
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04. 플랜 비교 -->
-    <section id="service">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">목적에 맞춘 2가지 플랜</h2>
-          <p class="section-desc">우리 사업장의 운영 형태와 예산에 알맞은 방식을 선택하세요.</p>
-        </div>
-
-        <div class="plan-grid">
-          <!-- BASIC -->
-          <div class="plan-card">
-            <div>
-              <span class="sample-tag tag-company">소개형 웹사이트</span>
-              <h3 style="font-size: 22px; font-weight: 800; color: var(--dark); margin-bottom: 6px;">Basic 플랜</h3>
-              <p class="plan-lead">브랜드와 서비스를 신뢰감 있게 전달하고, 온라인 문의를 받는 최적의 공식 웹사이트</p>
-              
-              <div class="plan-meta">
-                <span>제작 소요 기간</span>
-                <strong>3 ~ 7일 완성</strong>
-              </div>
-
-              <ul class="plan-list">
-                <li>✓ PC / 태블릿 / 모바일 반응형 완벽 대응</li>
-                <li>✓ 100% 고객 명의 계정 소유권 이전</li>
-                <li>✓ 문의 폼 및 이메일 실시간 알림 연동</li>
-                <li>✓ 네이버 / 구글 검색 포털 표준 등록</li>
-                <li>✓ 호스팅 0원 세팅 (클라우드 인프라 활용)</li>
-                <li>✓ 3개월 무상 수정 및 오류 대응</li>
-              </ul>
-            </div>
-            <a href="#contact" class="plan-btn plan-btn-default">Basic 맞춤 견적 문의</a>
-          </div>
-
-          <!-- PRO -->
-          <div class="plan-card featured">
-            <div class="featured-badge">병원·학원 강력 추천</div>
-            <div>
-              <span class="sample-tag tag-clinic">업무 시스템 연동형</span>
-              <h3 style="font-size: 22px; font-weight: 800; color: var(--dark); margin-bottom: 6px;">Pro 플랜</h3>
-              <p class="plan-lead">공개 웹페이지에 관리자 로그인, 예약 캘린더, 고객 및 매출 관리 백엔드를 결합한 시스템</p>
-              
-              <div class="plan-meta">
-                <span>제작 소요 기간</span>
-                <strong style="color: var(--primary);">2 ~ 4주 소요</strong>
-              </div>
-
-              <ul class="plan-list">
-                <li>✓ <strong>Basic 플랜의 모든 기능 기본 포함</strong></li>
-                <li>✓ 직원별 관리자 로그인 및 보안 권한 부여</li>
-                <li>✓ 실시간 온라인 예약 시스템 & 캘린더 연동</li>
-                <li>✓ 상담 이력 DB화 및 계약 상태 관리</li>
-                <li>✓ 월별 매출/인입 통계 자동 대시보드</li>
-                <li>✓ 3개월 무상 수정 및 오류 대응</li>
-              </ul>
-            </div>
-            <a href="#contact" class="plan-btn plan-btn-primary">Pro 플랜 견적 문의</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05. 비용 원가 공개 및 3개월 케어 -->
-    <section id="cost" style="border-top: 1px solid var(--border);">
-      <div class="container" style="max-width: 960px;">
-        <div class="section-header">
-          <h2 class="section-title">거품 없는 투명한 운영 실비</h2>
-          <p class="section-desc">유지보수비 명목으로 매월 불필요한 고정 비용을 청구하지 않습니다.</p>
-        </div>
-
-        <div class="cost-grid">
-          <div class="cost-card">
-            <div class="cost-label">도메인 등록비 (.com/.kr)</div>
-            <div class="cost-value">연 1~2만 원대 (실비)</div>
-            <div class="cost-sub">고객님 명의로 직접 결제, 마진 0원</div>
-          </div>
-          <div class="cost-card">
-            <div class="cost-label">서버 및 호스팅 비용</div>
-            <div class="cost-value free">매월 0원 (무료 플랜)</div>
-            <div class="cost-sub">글로벌 클라우드 무료 티어 인프라 활용</div>
-          </div>
-          <div class="cost-card">
-            <div class="cost-label">보안 SSL 인증서 (https)</div>
-            <div class="cost-value free">영구 무료 (0원)</div>
-            <div class="cost-sub">Let's Encrypt 자동 발급 및 갱신 세팅</div>
-          </div>
-        </div>
-
-        <div class="care-note">
-          💡 <strong>3개월 무상 케어 안내:</strong> 제작 납품 후 3개월간 오타 수정, 이미지 단순 교체, 시스템 오류는 무상으로 즉시 처리해 드립니다. 무상 기간이 끝난 후에도 자동으로 유료 결제되지 않으며, 수정 사항 발생 시에만 실비로 협의 진행합니다.
-        </div>
-      </div>
-    </section>
-
-    <!-- 06. 정부지원금 팩트체크 -->
-    <section id="gov" class="container">
-      <div class="gov-banner">
-        <div class="gov-content">
-          <span class="gov-badge">FACT CHECK ONLY</span>
-          <h3 class="gov-title">정부지원금, 과장 없이 공고 사실만 확인해 드립니다</h3>
-          <p class="gov-desc">
-            "무조건 전액 지원"이라는 거짓 영업에 속지 마세요. 우리 사업장이 실제로 홈페이지 제작비에 활용 가능한 정부 바우처(중소기업 혁신바우처 등)가 있는지 공식 공고 기준으로 확인해 드립니다.
-          </p>
-        </div>
-        <div>
-          <a href="#contact" class="gov-btn">지원금 가능 여부 문의 →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 07. Contact Form (CTA) -->
-    <section id="contact" class="contact-section">
-      <div class="container">
-        <div class="contact-card">
-          <div style="text-align: center; margin-bottom: 28px;">
-            <h2 style="font-size: 24px; font-weight: 800; color: var(--dark); margin-bottom: 6px;">30초 만에 끝나는 맞춤 견적 문의</h2>
-            <p style="font-size: 14px; color: var(--gray);">업종과 원하시는 형태만 남겨주시면, 예상 견적과 일정표를 안내해 드립니다.</p>
-          </div>
-
-          <form action="mailto:kwak_jaewon@naver.com" method="GET">
-            <div class="form-group">
-              <label>업종 선택</label>
-              <select name="subject" required>
-                <option value="[견적문의] 병원/의원 홈페이지">병원 / 의원</option>
-                <option value="[견적문의] 학원/교육기관 홈페이지">학원 / 교육기관</option>
-                <option value="[견적문의] 산후조리원/케어시설 홈페이지">산후조리원 / 케어시설</option>
-                <option value="[견적문의] 중소기업/B2B 홈페이지">중소기업 / 전문직 B2B</option>
-                <option value="[견적문의] 기타 맞춤 홈페이지">기타 맞춤 업종</option>
-              </select>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label>담당자 / 대표자 성명</label>
-                <input type="text" name="name" placeholder="홍길동" required>
-              </div>
-              <div class="form-group">
-                <label>연락처</label>
-                <input type="tel" name="phone" placeholder="010-0000-0000" required>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label>희망 오픈 일정</label>
-              <select name="schedule">
-                <option value="1~2주 이내">1~2주 이내 (빠른 런칭 희망)</option>
-                <option value="1개월 이내">1개월 이내</option>
-                <option value="상담 후 결정">일정 여유 있음 (상담 후 결정)</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>문의 내용 (선택)</label>
-              <textarea name="body" rows="3" placeholder="참고하고 계신 사이트가 있거나 특별히 필요한 기능이 있다면 간단히 적어주세요."></textarea>
-            </div>
-
-            <button type="submit" class="submit-btn">맞춤 견적 및 지원금 확인 요청하기</button>
-
-            <div class="contact-direct">
-              급한 문의는 📞 <a href="tel:010-894
+      overflow
